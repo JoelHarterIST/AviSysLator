@@ -234,7 +234,7 @@ static const cyaml_schema_field_t test_case_fields_schema[] = {
 			test_case_t, title, 0, CYAML_UNLIMITED),
 
 	CYAML_FIELD_MAPPING_PTR(
-			"init", CYAML_FLAG_POINTER,
+			"init", CYAML_FLAG_POINTER|CYAML_FLAG_OPTIONAL,
 			test_case_t, init, init_fields_schema),			
 
 	CYAML_FIELD_MAPPING_PTR(

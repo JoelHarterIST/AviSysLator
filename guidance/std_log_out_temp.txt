@@ -5,9 +5,9 @@ init start
 ---
 load file: /home/mukumoto/AvioCodeZERO_main/development/avisyslator_gnc/proto/translation_3dof_A04/guidance/symbol_map.yaml
 title: symbol map
-abs address mark: 0x00005617a52dd520
+abs address mark: 0x0000557952a78520
 map address mark: 0x00000000000a9520
-abs address base: 0x00005617a5234000
+abs address base: 0x00005579529cf000
 symbols:
 0	gp.r_d	0x000a92e0	2
 1	gp.v_d	0x000a92e8	2
@@ -96,3 +96,43 @@ title: guidance test normal setting yaml
 init:setting
 0	gs.status	0
 init:input_file
+std out log:input file count: 0
+std out log:cycle: 100
+std out log output file: test/guidance_test_normal_sol.txt
+std out log:cyclic log variables:
+0	ps.acl_.x
+1	ps.acl_.y
+2	ps.acl_.z
+3	gs.mode
+4	gs.status
+5	gs.t
+6	gs.t_go
+7	gs.mass
+8	gs.cyc_cnt
+9	gs.a_thrust
+std out log:event log variables:
+---
+init parameters and states
+---
+create std out log data
+not found ps.acl_.x
+not found ps.acl_.y
+not found ps.acl_.z
+std out log data:
+gs.mode	0000557952a78388	1	0000557952a7dea0
+gs.status	0000557952a78380	1	0000557952a7def8
+gs.t	0000557952a784e8	2	0000557952a7df50
+gs.t_go	0000557952a783c0	2	0000557952a7dfa8
+gs.mass	0000557952a78470	2	0000557952a7e000
+gs.cyc_cnt	0000557952a784e0	1	0000557952a7e058
+gs.a_thrust	0000557952a78478	2	0000000000000000
+---
+ERROR: The specified parameter is invalid. (src/userif.c:610)
+init end
+---
+simulation loop start
+sim_time:	gs.mode	gs.status	gs.t	gs.t_go	gs.mass	gs.cyc_cnt	gs.a_thrust
+0.000000:	0	0	0.000000000000	0.000000000000	0.000000000000	0	0.000000000000
+0.100000:	0	0	0.000000000000	0.000000000000	0.000000000000	0	0.000000000000
+simulation loop end
+---

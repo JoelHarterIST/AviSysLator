@@ -201,45 +201,52 @@ int load_test_case(char* file_path, test_case_t** pp_tc) {
 	// dump
 	_ptc = *pp_tc;
 	std_out_trace("title: %s\n", _ptc->title);
-	std_out_trace("init:setting\n");
-	for (i=0; i < _ptc->init->init_settings_count; i++) {
-		std_out_trace("%u\t%s\t%s\n", i, _ptc->init->init_settings[i].variable, _ptc->init->init_settings[i].value);
-	}
-	std_out_trace("init:input_file\n");
-	for (i=0; i < _ptc->init->input_files_count; i++) {
-		std_out_trace("%u\t%s\n", i, _ptc->init->input_files[i]);
+	if (_ptc->init != NULL) {
+		std_out_trace("init:setting\n");
+		for (i=0; i < _ptc->init->init_settings_count; i++) {
+			std_out_trace("%u\t%s\t%s\n", i, _ptc->init->init_settings[i].variable, _ptc->init->init_settings[i].value);
+		}
+		std_out_trace("init:input_file\n");
+		for (i=0; i < _ptc->init->input_files_count; i++) {
+			std_out_trace("%u\t%s\n", i, _ptc->init->input_files[i]);
+		}
 	}
 	
-	std_out_trace("time series:log cycle: %d\n", _ptc->time_series_log->cycle);
-	uip.time_series_log_cycle = _ptc->time_series_log->cycle;
-	for (i=0; i < _ptc->time_series_log->input_files_count; i++) {
-		std_out_trace("time series log input file: %s\n", _ptc->time_series_log->input_files[i]);
-	}
-	std_out_trace("time series log output file: %s\n", _ptc->time_series_log->output_file);
-
-	std_out_trace("std out log:cycle: %d\n", _ptc->std_out_log->cycle);
-	uip.std_out_log_cycle = _ptc->std_out_log->cycle;
-	std_out_trace("std out log output file: %s\n", _ptc->std_out_log->output_file);
-
-	std_out_trace("std out log:cyclic log variables:\n");
-	for(i = 0; i < _ptc->std_out_log->cyclic_log_vairables_count; i++){
-		std_out_trace("%u\t%s\n", i, _ptc->std_out_log->cyclic_log_vairables[i]);
+	if (_ptc->time_series_log != NULL) {
+		std_out_trace("time series:log cycle: %d\n", _ptc->time_series_log->cycle);
+		uip.time_series_log_cycle = _ptc->time_series_log->cycle;
+		for (i=0; i < _ptc->time_series_log->input_files_count; i++) {
+			std_out_trace("time series log input file: %s\n", _ptc->time_series_log->input_files[i]);
+		}
+		std_out_trace("time series log output file: %s\n", _ptc->time_series_log->output_file);
 	}
 
-	std_out_trace("std out log:event log variables:\n");
-	for (i=0; i < _ptc->std_out_log->event_logs_count; i++) {
-		std_out_trace("%u\t%s\t%d\t%s\n", i, 
-			_ptc->std_out_log->event_logs[i].variable, 
-			_ptc->std_out_log->event_logs[i].opt_type, 
-			_ptc->std_out_log->event_logs[i].threshold);
+	if (_ptc->std_out_log != NULL) {
+		std_out_trace("std out log:input file count: %d\n", _ptc->std_out_log->input_files_count);
+		std_out_trace("std out log:cycle: %d\n", _ptc->std_out_log->cycle);
+		uip.std_out_log_cycle = _ptc->std_out_log->cycle;
+		std_out_trace("std out log output file: %s\n", _ptc->std_out_log->output_file);
 
-		std_out_trace("\trelation variables: %d\n", _ptc->std_out_log->event_logs[i].monitors_count);
-		for(j=0; j < _ptc->std_out_log->event_logs[i].monitors_count; j++) {
-			std_out_trace("\t%u\t%s\n", j, 
-			_ptc->std_out_log->event_logs[i].monitors[j]);
-		} 
+		std_out_trace("std out log:cyclic log variables:\n");
+		for(i = 0; i < _ptc->std_out_log->cyclic_log_vairables_count; i++){
+			std_out_trace("%u\t%s\n", i, _ptc->std_out_log->cyclic_log_vairables[i]);
+		}
 
-	}	
+		std_out_trace("std out log:event log variables:\n");
+		for (i=0; i < _ptc->std_out_log->event_logs_count; i++) {
+			std_out_trace("%u\t%s\t%d\t%s\n", i, 
+				_ptc->std_out_log->event_logs[i].variable, 
+				_ptc->std_out_log->event_logs[i].opt_type, 
+				_ptc->std_out_log->event_logs[i].threshold);
+
+			std_out_trace("\trelation variables: %d\n", _ptc->std_out_log->event_logs[i].monitors_count);
+			for(j=0; j < _ptc->std_out_log->event_logs[i].monitors_count; j++) {
+				std_out_trace("\t%u\t%s\n", j, 
+				_ptc->std_out_log->event_logs[i].monitors[j]);
+			} 
+
+		}	
+	}
 	std_out_trace("---\n");
 
 	return EXIT_SUCCESS;
@@ -696,6 +703,8 @@ void write_time_series_log_header() {
 	int i = 0;
 	time_series_log_data_t* _tsld_p = NULL;
 
+	if (uip.time_series_log_cycle == 0) return;
+
 	_tsld_p = &tsld[0];
 	i = 0;
 	fprintf(tslfp,"sim_time");
@@ -717,6 +726,8 @@ void write_time_series_log_header() {
 void write_time_series_log_frame(int cycle, double t) {
 	int i = 0;
 	time_series_log_data_t* _tsld_p = NULL;
+
+	if (uip.time_series_log_cycle == 0) return;
 
 	if (0 == ((cycle+1)%uip.time_series_log_cycle)) {
 		fprintf(tslfp, "%f", t);
@@ -751,6 +762,8 @@ void write_cyclic_log_header() {
 	int i = 0;
 	cyclic_log_data_t* _cold = NULL;
 
+	if (uip.std_out_log_cycle == 0)  return;
+
 	std_out_trace("sim_time:");
 	_cold = &cold[0];
 	i = 0;
@@ -772,6 +785,8 @@ void write_cyclic_log_header() {
 void write_cyclic_log_frame(int cycle, double t) {
 	int i = 0;
 	cyclic_log_data_t* _cold = NULL;
+
+	if (uip.std_out_log_cycle == 0)  return;
 
 	if (0 == ((cycle+1)%uip.std_out_log_cycle)) {
 		std_out_trace("%f:", t);
@@ -806,6 +821,8 @@ void write_cyclic_log_frame(int cycle, double t) {
 void write_event_monitor(event_log_data_t* _evld) {
 	int i = 0;
 	event_monitor_data_t* _evmd = &_evld->evmd[0];
+
+	if (uip.std_out_log_cycle == 0)  return;
 	
 	if (_evld == NULL) {
 		stderr_out_trace("ERROR: %s (%s:%d)\n", "The specified parameter is invalid.", __FILE__, __LINE__);
@@ -843,6 +860,8 @@ void write_event_monitor(event_log_data_t* _evld) {
 /// @param[in] cur: current value 
 /// @param[in] prv: previous value 
 void write_event_int(option_type_e opt_type, double t, char* name, int cur, int prv) {
+
+	if (uip.std_out_log_cycle == 0)  return;
 
 	if (name == NULL) {
 		stderr_out_trace("ERROR: %s (%s:%d)\n", "The specified parameter is invalid.", __FILE__, __LINE__);
@@ -883,6 +902,8 @@ void write_event_int(option_type_e opt_type, double t, char* name, int cur, int 
 /// @param[in] cur: current value 
 /// @param[in] prv: previous value 
 void write_event_double(option_type_e opt_type, double t, char* name, double cur, double prv) {
+
+	if (uip.std_out_log_cycle == 0)  return;
 
 	if (name == NULL) {
 		stderr_out_trace("ERROR: %s (%s:%d)\n", "The specified parameter is invalid.", __FILE__, __LINE__);
@@ -1098,92 +1119,114 @@ int userif_init(double t, char* test_case_file) {
 	if (_ret != EXIT_SUCCESS) {
 		return _ret;
 	}
-	if(EVENT_LOG_DATA_MAX < _ptc->init->input_files_count) {
-		std_out_trace("%s input files count is reached to INPUT_FILE_NAME_SIZE\n", "init");
-	}
-	if(EVENT_LOG_DATA_MAX < _ptc->time_series_log->input_files_count) {
-		std_out_trace("%s input files count is reached to INPUT_FILE_NAME_SIZE\n", "time_series_log");
-	}
-	if(EVENT_LOG_DATA_MAX < _ptc->std_out_log->input_files_count) {
-		std_out_trace("%s input files count is reached to INPUT_FILE_NAME_SIZE\n", "std_out_log");
-	}
 
 
 	// load init input yaml
-	for (i = 0; i < _ptc->init->input_files_count; i++) {
-		if (INPUT_FILE_NAME_SIZE <= i) break;
-		sprintf(input_file_path, "%s/%s", exe_dir, _ptc->init->input_files[i]);
-		_ret = load_init_input(input_file_path, &_pin_arr[i]);
-		if (_ret != EXIT_SUCCESS) {
-			return _ret;
+	if (_ptc->init != NULL) {
+		if(EVENT_LOG_DATA_MAX < _ptc->init->input_files_count) {
+			std_out_trace("%s input files count is reached to INPUT_FILE_NAME_SIZE\n", "init");
+		}
+		for (i = 0; i < _ptc->init->input_files_count; i++) {
+			if (INPUT_FILE_NAME_SIZE <= i) break;
+			sprintf(input_file_path, "%s/%s", exe_dir, _ptc->init->input_files[i]);
+			_ret = load_init_input(input_file_path, &_pin_arr[i]);
+			if (_ret != EXIT_SUCCESS) {
+				return _ret;
+			}
 		}
 	}
 
 	// load time series input yaml
-	for (i = 0; i < _ptc->time_series_log->input_files_count; i++) {
-		if (INPUT_FILE_NAME_SIZE <= i) break;
-		sprintf(input_file_path, "%s/%s", exe_dir, _ptc->time_series_log->input_files[i]);
-		_ret = load_time_series_log_input(input_file_path, &_ptsli_arr[i]);
-		if (_ret != EXIT_SUCCESS) {
-			return _ret;
+	if (_ptc->time_series_log != NULL) {
+		if(EVENT_LOG_DATA_MAX < _ptc->time_series_log->input_files_count) {
+			std_out_trace("%s input files count is reached to INPUT_FILE_NAME_SIZE\n", "time_series_log");
+		}
+		for (i = 0; i < _ptc->time_series_log->input_files_count; i++) {
+			if (INPUT_FILE_NAME_SIZE <= i) break;
+			sprintf(input_file_path, "%s/%s", exe_dir, _ptc->time_series_log->input_files[i]);
+			_ret = load_time_series_log_input(input_file_path, &_ptsli_arr[i]);
+			if (_ret != EXIT_SUCCESS) {
+				return _ret;
+			}
 		}
 	}
 
 	// load std out log input yaml
-	for (i = 0; i < _ptc->std_out_log->input_files_count; i++) {
-		if (INPUT_FILE_NAME_SIZE <= i) break;
-		sprintf(input_file_path, "%s/%s", exe_dir, _ptc->std_out_log->input_files[i]);
-		_ret = load_std_out_log_input(input_file_path, &_psoli_arr[i]);
-		if (_ret != EXIT_SUCCESS) {
-			return _ret;
+	if (_ptc->std_out_log != NULL) {
+		if(EVENT_LOG_DATA_MAX < _ptc->std_out_log->input_files_count) {
+			std_out_trace("%s input files count is reached to INPUT_FILE_NAME_SIZE\n", "std_out_log");
+		}
+		for (i = 0; i < _ptc->std_out_log->input_files_count; i++) {
+			if (INPUT_FILE_NAME_SIZE <= i) break;
+			sprintf(input_file_path, "%s/%s", exe_dir, _ptc->std_out_log->input_files[i]);
+			_ret = load_std_out_log_input(input_file_path, &_psoli_arr[i]);
+			if (_ret != EXIT_SUCCESS) {
+				return _ret;
+			}
 		}
 	}
 
 	// init parameter and states
-	for (i = 0; i < _ptc->init->input_files_count; i++) {
-		if (INPUT_FILE_NAME_SIZE <= i) break;
-		init_param(_adr_base, _psm, _pin_arr[i]->init_setting, _pin_arr[i]->init_setting_count, &_init_vars_offset);
+	if (_ptc->init != NULL) {
+		for (i = 0; i < _ptc->init->input_files_count; i++) {
+			if (INPUT_FILE_NAME_SIZE <= i) break;
+			init_param(_adr_base, _psm, _pin_arr[i]->init_setting, _pin_arr[i]->init_setting_count, &_init_vars_offset);
+		}
+		init_param(_adr_base, _psm, _ptc->init->init_settings, _ptc->init->init_settings_count, &_init_vars_offset);
 	}
-	init_param(_adr_base, _psm, _ptc->init->init_settings, _ptc->init->init_settings_count, &_init_vars_offset);
 
 	// create time series log data
-	for (i = 0; i < _ptc->time_series_log->input_files_count; i++) {
-		if (INPUT_FILE_NAME_SIZE <= i) break;
-		create_time_series_log_data(_adr_base, _psm, _ptsli_arr[i]->time_series_log_variables, _ptsli_arr[i]->time_series_log_variables_count, &_tsld_offset);
+	if (_ptc->time_series_log != NULL) {
+		for (i = 0; i < _ptc->time_series_log->input_files_count; i++) {
+			if (INPUT_FILE_NAME_SIZE <= i) break;
+			create_time_series_log_data(_adr_base, _psm, _ptsli_arr[i]->time_series_log_variables, _ptsli_arr[i]->time_series_log_variables_count, &_tsld_offset);
+		}
+		create_time_series_log_data(_adr_base, _psm, _ptc->time_series_log->time_series_log_variables, _ptc->time_series_log->time_series_log_variables_count, &_tsld_offset);
 	}
-	create_time_series_log_data(_adr_base, _psm, _ptc->time_series_log->time_series_log_variables, _ptc->time_series_log->time_series_log_variables_count, &_tsld_offset);
 
 	// create cyclic log data and event log data
-	for (i = 0; i < _ptc->std_out_log->input_files_count; i++) {
-		if (INPUT_FILE_NAME_SIZE <= i) break;
-		create_cyclic_log_data(_adr_base, _psm, _psoli_arr[i]->cyclic_log_vairables, _psoli_arr[i]->cyclic_log_vairables_count, &_cld_offset);
-		create_event_log_data(_adr_base, _psm, _psoli_arr[i]->event_logs, _psoli_arr[i]->event_logs_count, &_evld_offset);
+	if (_ptc->std_out_log != NULL) {
+		for (i = 0; i < _ptc->std_out_log->input_files_count; i++) {
+			if (INPUT_FILE_NAME_SIZE <= i) break;
+			create_cyclic_log_data(_adr_base, _psm, _psoli_arr[i]->cyclic_log_vairables, _psoli_arr[i]->cyclic_log_vairables_count, &_cld_offset);
+			create_event_log_data(_adr_base, _psm, _psoli_arr[i]->event_logs, _psoli_arr[i]->event_logs_count, &_evld_offset);
+		}
+		create_cyclic_log_data(_adr_base, _psm, _ptc->std_out_log->cyclic_log_vairables, _ptc->std_out_log->cyclic_log_vairables_count, &_cld_offset);
+		create_event_log_data(_adr_base, _psm, _ptc->std_out_log->event_logs, _ptc->std_out_log->event_logs_count, &_evld_offset);
 	}
-	create_cyclic_log_data(_adr_base, _psm, _ptc->std_out_log->cyclic_log_vairables, _ptc->std_out_log->cyclic_log_vairables_count, &_cld_offset);
-	create_event_log_data(_adr_base, _psm, _ptc->std_out_log->event_logs, _ptc->std_out_log->event_logs_count, &_evld_offset);
 
-	// create log file path
-	sprintf(std_out_log_file_path, "%s/%s", exe_dir, _ptc->std_out_log->output_file);
+	if (_ptc->std_out_log != NULL) {
+		// create log file path
+		sprintf(std_out_log_file_path, "%s/%s", exe_dir, _ptc->std_out_log->output_file);
+	}
 
-	// open time series log file
-	sprintf(output_file_path, "%s/%s", exe_dir, _ptc->time_series_log->output_file);
-	tslfp = fopen(output_file_path, "w");
-	if (tslfp == NULL) {
-		printf("ERROR: %s (%s:%d)\n", strerror(errno), __FILE__, __LINE__);
-		return EXIT_FAILURE;
+	if (_ptc->time_series_log != NULL) {
+		// open time series log file
+		sprintf(output_file_path, "%s/%s", exe_dir, _ptc->time_series_log->output_file);
+		tslfp = fopen(output_file_path, "w");
+		if (tslfp == NULL) {
+			printf("ERROR: %s (%s:%d)\n", strerror(errno), __FILE__, __LINE__);
+			return EXIT_FAILURE;
+		}
 	}	
 
 	/* free the data */
 	cyaml_free(&config, &symbol_map_schema, _psm, 0);
 	cyaml_free(&config, &test_case_schema, _ptc, 0);
-	for (i = 0; i < _ptc->init->input_files_count; i++) {
-		cyaml_free(&config, &init_input_schema, _pin_arr[i], 0);
+	if (_ptc->init != NULL) {
+		for (i = 0; i < _ptc->init->input_files_count; i++) {
+			cyaml_free(&config, &init_input_schema, _pin_arr[i], 0);
+		}
 	}
-	for (i = 0; i < _ptc->time_series_log->input_files_count; i++) {
-		cyaml_free(&config, &time_series_log_input_schema, _ptsli_arr[i], 0);
+	if (_ptc->time_series_log != NULL) {
+		for (i = 0; i < _ptc->time_series_log->input_files_count; i++) {
+			cyaml_free(&config, &time_series_log_input_schema, _ptsli_arr[i], 0);
+		}
 	}
-	for (i = 0; i < _ptc->std_out_log->input_files_count; i++) {
-		cyaml_free(&config, &std_out_log_input_schema, _psoli_arr[i], 0);
+	if (_ptc->std_out_log != NULL) {
+		for (i = 0; i < _ptc->std_out_log->input_files_count; i++) {
+			cyaml_free(&config, &std_out_log_input_schema, _psoli_arr[i], 0);
+		}
 	}
 	// initialize finish message
 	std_out_trace("init end\n");

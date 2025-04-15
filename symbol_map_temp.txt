@@ -3,8 +3,8 @@
 000000000000d000 R _IO_stdin_used
                  w _ITM_deregisterTMCloneTable
                  w _ITM_registerTMCloneTable
-000000000000ea34 r __FRAME_END__
-000000000000dcf8 r __GNU_EH_FRAME_HDR
+000000000000ea64 r __FRAME_END__
+000000000000dd28 r __GNU_EH_FRAME_HDR
 0000000000013010 D __TMC_END__
 000000000000038c r __abi_tag
 0000000000013010 B __bss_start
@@ -21,54 +21,54 @@
                  U __stack_chk_fail@GLIBC_2.4
 0000000000013010 D _edata
 0000000000083328 B _end
-000000000000cad0 T _fini
+000000000000cc60 T _fini
 0000000000002000 T _init
 0000000000002460 T _start
-0000000000006bac T add_v3_3
-0000000000006c2d T add_v3_4
-0000000000006b46 T add_v3_v3
-0000000000007f96 T array_to_q
-000000000000698d T array_to_v3
+0000000000006d3f T add_v3_3
+0000000000006dc0 T add_v3_4
+0000000000006cd9 T add_v3_v3
+0000000000008129 T array_to_q
+0000000000006b20 T array_to_v3
                  U asin@GLIBC_2.2.5
                  U atan2@GLIBC_2.2.5
-0000000000005871 T check_condition_double
-0000000000005770 T check_condition_int
-00000000000059be T check_event
-0000000000008c0b T cnjg_q
+0000000000005938 T check_condition_double
+0000000000005837 T check_condition_int
+0000000000005a85 T check_event
+0000000000008d9e T cnjg_q
 0000000000018880 B cold
 0000000000013028 b completed.0
 0000000000012c20 d config
 0000000000012c60 d config
                  U cos@GLIBC_2.2.5
-0000000000004559 T create_cyclic_log_data
-0000000000004792 T create_event_log_data
-0000000000004320 T create_time_series_log_data
-00000000000041c7 T create_variable_data
-0000000000006e44 T crs_v3_v3
+00000000000045ad T create_cyclic_log_data
+00000000000047e6 T create_event_log_data
+0000000000004374 T create_time_series_log_data
+000000000000421b T create_variable_data
+0000000000006fd7 T crs_v3_v3
                  U cyaml_free
                  U cyaml_load_file
                  U cyaml_log
                  U cyaml_mem
                  U cyaml_strerror
 0000000000013000 W data_start
-000000000000769b T dcm_to_euler321
-00000000000087a4 T dcm_to_q
+000000000000782e T dcm_to_euler321
+0000000000008937 T dcm_to_q
 0000000000002490 t deregister_tm_clones
-00000000000078b5 T det_m33
-0000000000007bed T dot_m33_m33
-0000000000006ee0 T dot_m33_v3
-0000000000006df4 T dot_v3_v3
-000000000000918a T dq_dt
-000000000000c57a T eq_of_system
-0000000000007370 T euler321_to_dcm
-00000000000081a6 T euler321_to_q
+0000000000007a48 T det_m33
+0000000000007d80 T dot_m33_m33
+0000000000007073 T dot_m33_v3
+0000000000006f87 T dot_v3_v3
+000000000000931d T dq_dt
+000000000000c70d T eq_of_system
+0000000000007503 T euler321_to_dcm
+0000000000008339 T euler321_to_q
 0000000000010be0 d event_log_fields_schema
 0000000000011ec0 d event_log_fields_schema
 0000000000010d80 d event_log_schema
 0000000000012060 d event_log_schema
 000000000001e080 B evld
                  U exp@GLIBC_2.29
-00000000000072b1 T eye_m33
+0000000000007444 T eye_m33
                  U fclose@GLIBC_2.2.5
                  U fflush@GLIBC_2.2.5
                  U fopen@GLIBC_2.2.5
@@ -81,59 +81,59 @@
 0000000000002af8 T get_symbol_address
 00000000000830a0 B gp
 0000000000083140 B gs
-0000000000009c07 T guidance_core
-00000000000092e7 T guidance_init
-00000000000094a3 T guidance_main
-0000000000006d8e T hdm_v3_v3
+0000000000009d9a T guidance_core
+000000000000947a T guidance_init
+0000000000009636 T guidance_main
+0000000000006f21 T hdm_v3_v3
 0000000000011140 d init_fields_schema
 0000000000012420 d init_fields_schema
 0000000000011460 d init_input_fields_schema
 0000000000012740 d init_input_fields_schema
 00000000000115a0 d init_input_schema
 0000000000012880 d init_input_schema
-00000000000039d9 T init_param
+0000000000003a2d T init_param
 0000000000010a20 d init_setting_fields_schema
 0000000000011d00 d init_setting_fields_schema
 0000000000010b20 d init_setting_schema
 0000000000011e00 d init_setting_schema
 000000000007d080 B init_vars
-0000000000007971 T inv_m33
-0000000000003396 T load_init_input
-00000000000036d0 T load_std_out_log_input
+0000000000007b04 T inv_m33
+00000000000033ea T load_init_input
+0000000000003724 T load_std_out_log_input
 0000000000002c1b T load_symbol_map
 0000000000002e89 T load_test_case
-0000000000003540 T load_time_series_log_input
+0000000000003594 T load_time_series_log_input
 0000000000002549 T main
 0000000000013060 B mark_variable
                  U memcpy@GLIBC_2.14
 0000000000013030 B mp
 0000000000013040 B ms
-00000000000080d8 T nmlz_q
-0000000000006a96 T nmlz_v3
-0000000000008055 T norm_q
-0000000000006a25 T norm_v3
-000000000000718f T ones_m33
-0000000000007ec8 T ones_q
-00000000000068df T ones_v3
+000000000000826b T nmlz_q
+0000000000006c29 T nmlz_v3
+00000000000081e8 T norm_q
+0000000000006bb8 T norm_v3
+0000000000007322 T ones_m33
+000000000000805b T ones_q
+0000000000006a72 T ones_v3
 0000000000010b60 d option_type_strings
 0000000000011e40 d option_type_strings
                  U perror@GLIBC_2.2.5
-000000000000c707 T plant_main
+000000000000c89a T plant_main
 00000000000832c0 B pp
-0000000000006fb2 T print_m33
-0000000000007e62 T print_q
-000000000000683a T print_v3
+0000000000007145 T print_m33
+0000000000007ff5 T print_q
+00000000000069cd T print_v3
                  U printf@GLIBC_2.2.5
 00000000000832e0 B ps
-0000000000008006 T q_to_array
-0000000000008ded T q_to_dcm
-0000000000008647 T q_to_euler321
-00000000000090ea T qerr
-0000000000008c8c T qpro
+0000000000008199 T q_to_array
+0000000000008f80 T q_to_dcm
+00000000000087da T q_to_euler321
+000000000000927d T qerr
+0000000000008e1f T qpro
                  U readlink@GLIBC_2.2.5
 00000000000024c0 t register_tm_clones
                  U rename@GLIBC_2.2.5
-0000000000006d2f T scl_v3
+0000000000006ec2 T scl_v3
                  U sin@GLIBC_2.2.5
 0000000000081088 B solfp
                  U sprintf@GLIBC_2.2.5
@@ -159,7 +159,7 @@
                  U strncmp@GLIBC_2.2.5
                  U strncpy@GLIBC_2.2.5
                  U strrchr@GLIBC_2.2.5
-0000000000006cc9 T sub_v3_v3
+0000000000006e5c T sub_v3_v3
 00000000000106c0 d symbol_data_fields_schema
 00000000000119a0 d symbol_data_fields_schema
 0000000000010800 d symbol_data_schema
@@ -181,25 +181,25 @@
 00000000000128c0 d time_series_log_input_fields_schema
 0000000000011720 d time_series_log_input_schema
 0000000000012a00 d time_series_log_input_schema
-00000000000077f9 T trns_m33
+000000000000798c T trns_m33
 0000000000013080 B tsld
 0000000000081080 B tslfp
 0000000000013068 B uip
-00000000000067ce T userif_finish
-0000000000005bb8 T userif_init
-000000000000677f T userif_main
-0000000000006748 T userif_main_loop_end
-00000000000066f5 T userif_main_loop_start
-00000000000069e7 T v3_to_array
-0000000000007f25 T val_to_q
-0000000000006933 T val_to_v3
+0000000000006961 T userif_finish
+0000000000005c7f T userif_init
+0000000000006912 T userif_main
+00000000000068db T userif_main_loop_end
+0000000000006888 T userif_main_loop_start
+0000000000006b7a T v3_to_array
+00000000000080b8 T val_to_q
+0000000000006ac6 T val_to_v3
                  U vsprintf@GLIBC_2.2.5
-0000000000005168 T write_cyclic_log_frame
-00000000000050bc T write_cyclic_log_header
-0000000000005550 T write_event_double
-00000000000053a0 T write_event_int
-0000000000005281 T write_event_monitor
-0000000000004f75 T write_time_series_log_frame
-0000000000004eb3 T write_time_series_log_header
-000000000000706d T zeros_m33
-0000000000006897 T zeros_v3
+00000000000051ec T write_cyclic_log_frame
+0000000000005130 T write_cyclic_log_header
+0000000000005606 T write_event_double
+0000000000005445 T write_event_int
+0000000000005315 T write_event_monitor
+0000000000004fd9 T write_time_series_log_frame
+0000000000004f07 T write_time_series_log_header
+0000000000007200 T zeros_m33
+0000000000006a2a T zeros_v3

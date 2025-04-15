@@ -5,9 +5,9 @@ init start
 ---
 load file: /home/mukumoto/AvioCodeZERO_main/development/avisyslator_gnc/proto/translation_3dof_A04/guidance/symbol_map.yaml
 title: symbol map
-abs address mark: 0x00005637ac66a520
+abs address mark: 0x00005625ad5e0520
 map address mark: 0x00000000000a9520
-abs address base: 0x00005637ac5c1000
+abs address base: 0x00005625ad537000
 symbols:
 0	gp.r_d	0x000a92e0	2
 1	gp.v_d	0x000a92e8	2
@@ -98,6 +98,7 @@ init:setting
 init:input_file
 time series:log cycle: 100
 time series log output file: test/guidance_test_normal_tsl.tsv
+std out log:input file count: 0
 std out log:cycle: 100
 std out log output file: test/guidance_test_normal_sol.txt
 std out log:cyclic log variables:
@@ -123,24 +124,24 @@ not found ps.vel_.x
 not found ps.vel_.y
 not found ps.vel_.z
 time series log data:
-gs.f_thrust_.x	00005637ac66a4b0	2	00005637ac66a7a8
-gs.f_thrust_.y	00005637ac66a4b8	2	00005637ac66a800
-gs.f_thrust_.z	00005637ac66a4c0	2	0000000000000000
+gs.f_thrust_.x	00005625ad5e04b0	2	00005625ad5e07a8
+gs.f_thrust_.y	00005625ad5e04b8	2	00005625ad5e0800
+gs.f_thrust_.z	00005625ad5e04c0	2	0000000000000000
 ---
 create std out log data
 not found ps.acl_.x
 not found ps.acl_.y
 not found ps.acl_.z
 std out log data:
-gs.mode	00005637ac66a388	1	00005637ac66fea0
-gs.status	00005637ac66a380	1	00005637ac66fef8
-gs.t	00005637ac66a4e8	2	00005637ac66ff50
-gs.t_go	00005637ac66a3c0	2	00005637ac66ffa8
-gs.mass	00005637ac66a470	2	00005637ac670000
-gs.cyc_cnt	00005637ac66a4e0	1	00005637ac670058
-gs.a_thrust	00005637ac66a478	2	0000000000000000
+gs.mode	00005625ad5e0388	1	00005625ad5e5ea0
+gs.status	00005625ad5e0380	1	00005625ad5e5ef8
+gs.t	00005625ad5e04e8	2	00005625ad5e5f50
+gs.t_go	00005625ad5e03c0	2	00005625ad5e5fa8
+gs.mass	00005625ad5e0470	2	00005625ad5e6000
+gs.cyc_cnt	00005625ad5e04e0	1	00005625ad5e6058
+gs.a_thrust	00005625ad5e0478	2	0000000000000000
 ---
-ERROR: The specified parameter is invalid. (src/userif.c:603)
+ERROR: The specified parameter is invalid. (src/userif.c:610)
 init end
 ---
 simulation loop start
