@@ -1,0 +1,13 @@
+title: time series log input yaml
+description: |
+  This is test file of time series log input yaml.
+time_log_variables :
+    - ps.pos_.x
+    - ps.pos_.y
+    - ps.pos_.z
+    - ps.vel_.x
+    - ps.vel_.y
+    - ps.vel_.z
+    - gs.f_thrust_.x
+    - gs.f_thrust_.y
+    - gs.f_thrust_.z

@@ -1,0 +1,34 @@
+title: guidance test normal setting yaml
+description: |
+  This is test file of guidance test normal setting yaml.
+init: 
+  settings: 
+    - variable: gs.status
+      value: 0
+std_out_log:
+  output_file: test/guidance_test_normal_sol.txt
+  cycle: 100
+  cyclic_log_variables:
+    - ps.acl_.x
+    - ps.acl_.y
+    - ps.acl_.z
+    - gs.mode
+    - gs.status
+    - gs.t
+    - gs.t_go
+    - gs.mass
+    - gs.cyc_cnt
+    - gs.a_thrust
+time_series_log: 
+  output_file: test/guidance_test_normal_tsl.tsv
+  cycle: 100
+  time_series_log_variables :
+    - ps.pos_.x
+    - ps.pos_.y
+    - ps.pos_.z
+    - ps.vel_.x
+    - ps.vel_.y
+    - ps.vel_.z
+    - gs.f_thrust_.x
+    - gs.f_thrust_.y
+    - gs.f_thrust_.z

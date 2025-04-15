@@ -1,0 +1,7 @@
+avisyslator gnc start
+case file : test_case.yaml
+---
+init start
+---
+load file: /home/mukumoto/AvioCodeZERO_main/development/avisyslator_gnc/proto/translation_3dof_A04/userif/symbol_map.yaml
+ERROR: Could not open file (src/userif.c:157)

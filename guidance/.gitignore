@@ -1,0 +1,7 @@
+**/*.gcda
+**/*.gcno
+**/*.gcov
+lcovdata.info
+coverage/
+debug_out
+guidance_test
