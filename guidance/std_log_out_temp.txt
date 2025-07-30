@@ -3,95 +3,95 @@ case file : test/guidance_test_normal.yaml
 ---
 init start
 ---
-load file: /home/mukumoto/AvioCodeZERO_main/development/avisyslator_gnc/proto/translation_3dof_A04/guidance/symbol_map.yaml
+load file: /home/ymukuist/aviocode_main/development/avisyslator_gnc/proto/translation_3dof_A04/guidance/symbol_map.yaml
 title: symbol map
-abs address mark: 0x0000557952a78520
-map address mark: 0x00000000000a9520
-abs address base: 0x00005579529cf000
+abs address mark: 0x00005555555fa520
+map address mark: 0x00000000000a6520
+abs address base: 0x0000555555554000
 symbols:
-0	gp.r_d	0x000a92e0	2
-1	gp.v_d	0x000a92e8	2
-2	gp.i_d	0x000a92f0	2
-3	gp.gmm_d	0x000a92f8	2
-4	gp.f_thrust	0x000a9300	2
-5	gp.mass_0	0x000a9308	2
-6	gp.mass_dot	0x000a9310	2
-7	gp.i_sp	0x000a9318	2
-8	gp.v_ex	0x000a9320	2
-9	gp.eps	0x000a9328	2
-10	gp.eps_r	0x000a9330	2
-11	gp.eps_v	0x000a9338	2
-12	gp.d_damp	0x000a9340	2
-13	gp.i_corr_min	0x000a9348	1
-14	gp.i_corr_max_init	0x000a934c	1
-15	gp.i_corr_max_update	0x000a9350	1
-16	gp.i_pred_max	0x000a9354	1
-17	gp.t_go_min	0x000a9358	2
-18	gp.cyc_wait	0x000a9360	1
-19	gp.dt	0x000a9368	2
-20	gs.status	0x000a9380	1
-21	gs.out_cmd	0x000a9384	1
-22	gs.mode	0x000a9388	1
-23	gs.mode_next	0x000a938c	1
-24	gs.d_v_.x	0x000a9390	2
-25	gs.d_v_.y	0x000a9398	2
-26	gs.d_v_.z	0x000a93a0	2
-27	gs.u_y_.x	0x000a93a8	2
-28	gs.u_y_.y	0x000a93b0	2
-29	gs.u_y_.z	0x000a93b8	2
-30	gs.t_go	0x000a93c0	2
-31	gs.k_time	0x000a93c8	2
-32	gs.lmd_.x	0x000a93d0	2
-33	gs.lmd_.y	0x000a93d8	2
-34	gs.lmd_.z	0x000a93e0	2
-35	gs.lmd_dot_.x	0x000a93e8	2
-36	gs.lmd_dot_.y	0x000a93f0	2
-37	gs.lmd_dot_.z	0x000a93f8	2
-38	gs.lmd_dot	0x000a9400	2
-39	gs.v_p_.x	0x000a9408	2
-40	gs.v_p_.y	0x000a9410	2
-41	gs.v_p_.z	0x000a9418	2
-42	gs.r_p_.x	0x000a9420	2
-43	gs.r_p_.y	0x000a9428	2
-44	gs.r_p_.z	0x000a9430	2
-45	gs.r_p	0x000a9438	2
-46	gs.r_d_.x	0x000a9440	2
-47	gs.r_d_.y	0x000a9448	2
-48	gs.r_d_.z	0x000a9450	2
-49	gs.v_d_.x	0x000a9458	2
-50	gs.v_d_.y	0x000a9460	2
-51	gs.v_d_.z	0x000a9468	2
-52	gs.mass	0x000a9470	2
-53	gs.a_thrust	0x000a9478	2
-54	gs.dlt_v_thrust_.x	0x000a9480	2
-55	gs.dlt_v_thrust_.y	0x000a9488	2
-56	gs.dlt_v_thrust_.z	0x000a9490	2
-57	gs.p_.x	0x000a9498	2
-58	gs.p_.y	0x000a94a0	2
-59	gs.p_.z	0x000a94a8	2
-60	gs.f_thrust_.x	0x000a94b0	2
-61	gs.f_thrust_.y	0x000a94b8	2
-62	gs.f_thrust_.z	0x000a94c0	2
-63	gs.a_thrust_.x	0x000a94c8	2
-64	gs.a_thrust_.y	0x000a94d0	2
-65	gs.a_thrust_.z	0x000a94d8	2
-66	gs.cyc_cnt	0x000a94e0	1
-67	gs.t	0x000a94e8	2
-68	gs.t_c	0x000a94f0	2
-69	gs.d_v_	0x000a9380	3
-70	gs.u_y_	0x000a9398	3
-71	gs.lmd_	0x000a93b0	3
-72	gs.lmd_dot_	0x000a93c8	3
-73	gs.v_p_	0x000a93e0	3
-74	gs.r_p_	0x000a93f8	3
-75	gs.r_d_	0x000a9410	3
-76	gs.v_d_	0x000a9428	3
-77	gs.dlt_v_thrust_	0x000a9440	3
-78	gs.p_	0x000a9458	3
-79	gs.f_thrust_	0x000a9470	3
-80	gs.a_thrust_	0x000a9488	3
+0	gp.r_d	0x000a62e0	2
+1	gp.v_d	0x000a62e8	2
+2	gp.i_d	0x000a62f0	2
+3	gp.gmm_d	0x000a62f8	2
+4	gp.f_thrust	0x000a6300	2
+5	gp.mass_0	0x000a6308	2
+6	gp.mass_dot	0x000a6310	2
+7	gp.i_sp	0x000a6318	2
+8	gp.v_ex	0x000a6320	2
+9	gp.eps	0x000a6328	2
+10	gp.eps_r	0x000a6330	2
+11	gp.eps_v	0x000a6338	2
+12	gp.d_damp	0x000a6340	2
+13	gp.i_corr_min	0x000a6348	1
+14	gp.i_corr_max_init	0x000a634c	1
+15	gp.i_corr_max_update	0x000a6350	1
+16	gp.i_pred_max	0x000a6354	1
+17	gp.t_go_min	0x000a6358	2
+18	gp.cyc_wait	0x000a6360	1
+19	gp.dt	0x000a6368	2
+20	gs.status	0x000a6380	1
+21	gs.out_cmd	0x000a6384	1
+22	gs.mode	0x000a6388	1
+23	gs.mode_next	0x000a638c	1
+24	gs.d_v_.x	0x000a6390	2
+25	gs.d_v_.y	0x000a6398	2
+26	gs.d_v_.z	0x000a63a0	2
+27	gs.u_y_.x	0x000a63a8	2
+28	gs.u_y_.y	0x000a63b0	2
+29	gs.u_y_.z	0x000a63b8	2
+30	gs.t_go	0x000a63c0	2
+31	gs.k_time	0x000a63c8	2
+32	gs.lmd_.x	0x000a63d0	2
+33	gs.lmd_.y	0x000a63d8	2
+34	gs.lmd_.z	0x000a63e0	2
+35	gs.lmd_dot_.x	0x000a63e8	2
+36	gs.lmd_dot_.y	0x000a63f0	2
+37	gs.lmd_dot_.z	0x000a63f8	2
+38	gs.lmd_dot	0x000a6400	2
+39	gs.v_p_.x	0x000a6408	2
+40	gs.v_p_.y	0x000a6410	2
+41	gs.v_p_.z	0x000a6418	2
+42	gs.r_p_.x	0x000a6420	2
+43	gs.r_p_.y	0x000a6428	2
+44	gs.r_p_.z	0x000a6430	2
+45	gs.r_p	0x000a6438	2
+46	gs.r_d_.x	0x000a6440	2
+47	gs.r_d_.y	0x000a6448	2
+48	gs.r_d_.z	0x000a6450	2
+49	gs.v_d_.x	0x000a6458	2
+50	gs.v_d_.y	0x000a6460	2
+51	gs.v_d_.z	0x000a6468	2
+52	gs.mass	0x000a6470	2
+53	gs.a_thrust	0x000a6478	2
+54	gs.dlt_v_thrust_.x	0x000a6480	2
+55	gs.dlt_v_thrust_.y	0x000a6488	2
+56	gs.dlt_v_thrust_.z	0x000a6490	2
+57	gs.p_.x	0x000a6498	2
+58	gs.p_.y	0x000a64a0	2
+59	gs.p_.z	0x000a64a8	2
+60	gs.f_thrust_.x	0x000a64b0	2
+61	gs.f_thrust_.y	0x000a64b8	2
+62	gs.f_thrust_.z	0x000a64c0	2
+63	gs.a_thrust_.x	0x000a64c8	2
+64	gs.a_thrust_.y	0x000a64d0	2
+65	gs.a_thrust_.z	0x000a64d8	2
+66	gs.cyc_cnt	0x000a64e0	1
+67	gs.t	0x000a64e8	2
+68	gs.t_c	0x000a64f0	2
+69	gs.d_v_	0x000a6380	3
+70	gs.u_y_	0x000a6398	3
+71	gs.lmd_	0x000a63b0	3
+72	gs.lmd_dot_	0x000a63c8	3
+73	gs.v_p_	0x000a63e0	3
+74	gs.r_p_	0x000a63f8	3
+75	gs.r_d_	0x000a6410	3
+76	gs.v_d_	0x000a6428	3
+77	gs.dlt_v_thrust_	0x000a6440	3
+78	gs.p_	0x000a6458	3
+79	gs.f_thrust_	0x000a6470	3
+80	gs.a_thrust_	0x000a6488	3
 ---
-load file: /home/mukumoto/AvioCodeZERO_main/development/avisyslator_gnc/proto/translation_3dof_A04/guidance/test/guidance_test_normal.yaml
+load file: /home/ymukuist/aviocode_main/development/avisyslator_gnc/proto/translation_3dof_A04/guidance/test/guidance_test_normal.yaml
 title: guidance test normal setting yaml
 init:setting
 0	gs.status	0
@@ -119,13 +119,13 @@ not found ps.acl_.x
 not found ps.acl_.y
 not found ps.acl_.z
 std out log data:
-gs.mode	0000557952a78388	1	0000557952a7dea0
-gs.status	0000557952a78380	1	0000557952a7def8
-gs.t	0000557952a784e8	2	0000557952a7df50
-gs.t_go	0000557952a783c0	2	0000557952a7dfa8
-gs.mass	0000557952a78470	2	0000557952a7e000
-gs.cyc_cnt	0000557952a784e0	1	0000557952a7e058
-gs.a_thrust	0000557952a78478	2	0000000000000000
+gs.mode	00005555555fa388	1	00005555555ffea0
+gs.status	00005555555fa380	1	00005555555ffef8
+gs.t	00005555555fa4e8	2	00005555555fff50
+gs.t_go	00005555555fa3c0	2	00005555555fffa8
+gs.mass	00005555555fa470	2	0000555555600000
+gs.cyc_cnt	00005555555fa4e0	1	0000555555600058
+gs.a_thrust	00005555555fa478	2	0000000000000000
 ---
 ERROR: The specified parameter is invalid. (src/userif.c:610)
 init end

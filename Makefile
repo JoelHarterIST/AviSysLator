@@ -32,6 +32,7 @@ EXTS += ./plant/src/plant_ext.h
 .SUFFIXES: .c .o
 
 $(TARGET): $(OBJS)
+	cd "./gncmath" && make lib && cd ..
 	$(CC) -o $(TARGET) $(INCDIR) $^ $(LIBDIR) $(LIBS) $(LDFLAGS)
 	python create_symbolmap_yaml.py --obj_file $(TARGET) --header_file_list $(EXTS) --sim_mode "SILS"
 

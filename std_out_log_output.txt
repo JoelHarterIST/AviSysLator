@@ -3,11 +3,11 @@ case file : test_case.yaml
 ---
 init start
 ---
-load file: /home/mukumoto/AvioCodeZERO_main/development/avisyslator_gnc/proto/translation_3dof_A04/symbol_map.yaml
+load file: /home/ymukuist/aviocode_main/development/avisyslator_gnc/proto/translation_3dof_A04/symbol_map.yaml
 title: symbol map
-abs address mark: 0x000055629b64a060
+abs address mark: 0x00006135c6d24060
 map address mark: 0x0000000000013060
-abs address base: 0x000055629b637000
+abs address base: 0x00006135c6d11000
 symbols:
 0	mp.dt	0x00013030	2
 1	mp.num_of_loop	0x00013038	1
@@ -107,7 +107,7 @@ symbols:
 95	ps.vel_	0x000832f8	3
 96	ps.acl_	0x00083310	3
 ---
-load file: /home/mukumoto/AvioCodeZERO_main/development/avisyslator_gnc/proto/translation_3dof_A04/test_case.yaml
+load file: /home/ymukuist/aviocode_main/development/avisyslator_gnc/proto/translation_3dof_A04/test_case.yaml
 title: test case setting yaml
 init:setting
 0	mp.dt	0.01
@@ -150,41 +150,41 @@ init parameters and states
 ---
 create time series log data
 time series log data:
-ps.pos_.x	000055629b6ba2e0	2	000055629b64a0d8
-ps.pos_.y	000055629b6ba2e8	2	000055629b64a130
-ps.pos_.z	000055629b6ba2f0	2	000055629b64a188
-ps.vel_.x	000055629b6ba2f8	2	000055629b64a1e0
-ps.vel_.y	000055629b6ba300	2	000055629b64a238
-ps.vel_.z	000055629b6ba308	2	000055629b64a290
-gs.f_thrust_.x	000055629b6ba270	2	000055629b64a2e8
-gs.f_thrust_.y	000055629b6ba278	2	000055629b64a340
-gs.f_thrust_.z	000055629b6ba280	2	0000000000000000
+ps.pos_.x	00006135c6d942e0	2	00006135c6d240d8
+ps.pos_.y	00006135c6d942e8	2	00006135c6d24130
+ps.pos_.z	00006135c6d942f0	2	00006135c6d24188
+ps.vel_.x	00006135c6d942f8	2	00006135c6d241e0
+ps.vel_.y	00006135c6d94300	2	00006135c6d24238
+ps.vel_.z	00006135c6d94308	2	00006135c6d24290
+gs.f_thrust_.x	00006135c6d94270	2	00006135c6d242e8
+gs.f_thrust_.y	00006135c6d94278	2	00006135c6d24340
+gs.f_thrust_.z	00006135c6d94280	2	0000000000000000
 ---
 create std out log data
 not found gs.modes
 std out log data:
-gs.status	000055629b6ba140	1	000055629b64f930
-gs.t	000055629b6ba2a8	2	000055629b64f988
-gs.t_go	000055629b6ba180	2	000055629b64f9e0
-gs.mass	000055629b6ba230	2	000055629b64fa38
-gs.cyc_cnt	000055629b6ba2a0	1	000055629b64fa90
-gs.a_thrust	000055629b6ba238	2	000055629b64fae8
-ps.acl_.x	000055629b6ba310	2	000055629b64fb40
-ps.acl_.y	000055629b6ba318	2	000055629b64fb98
-ps.acl_.z	000055629b6ba320	2	0000000000000000
+gs.status	00006135c6d94140	1	00006135c6d29930
+gs.t	00006135c6d942a8	2	00006135c6d29988
+gs.t_go	00006135c6d94180	2	00006135c6d299e0
+gs.mass	00006135c6d94230	2	00006135c6d29a38
+gs.cyc_cnt	00006135c6d942a0	1	00006135c6d29a90
+gs.a_thrust	00006135c6d94238	2	00006135c6d29ae8
+ps.acl_.x	00006135c6d94310	2	00006135c6d29b40
+ps.acl_.y	00006135c6d94318	2	00006135c6d29b98
+ps.acl_.z	00006135c6d94320	2	0000000000000000
 ---
 create event log data
 event log data:
-gs.mode	000055629b6ba148	1	6	0.000000	0000000000000000
-	ps.pos_.x	000055629b6ba2e0	2	000055629b655148
-	ps.pos_.y	000055629b6ba2e8	2	000055629b6551a0
-	ps.pos_.z	000055629b6ba2f0	2	000055629b6551f8
-	ps.vel_.x	000055629b6ba2f8	2	000055629b655250
-	ps.vel_.y	000055629b6ba300	2	000055629b6552a8
-	ps.vel_.z	000055629b6ba308	2	000055629b655300
-	gs.f_thrust_.x	000055629b6ba270	2	000055629b655358
-	gs.f_thrust_.y	000055629b6ba278	2	000055629b6553b0
-	gs.f_thrust_.z	000055629b6ba280	2	0000000000000000
+gs.mode	00006135c6d94148	1	6	0.000000	0000000000000000
+	ps.pos_.x	00006135c6d942e0	2	00006135c6d2f148
+	ps.pos_.y	00006135c6d942e8	2	00006135c6d2f1a0
+	ps.pos_.z	00006135c6d942f0	2	00006135c6d2f1f8
+	ps.vel_.x	00006135c6d942f8	2	00006135c6d2f250
+	ps.vel_.y	00006135c6d94300	2	00006135c6d2f2a8
+	ps.vel_.z	00006135c6d94308	2	00006135c6d2f300
+	gs.f_thrust_.x	00006135c6d94270	2	00006135c6d2f358
+	gs.f_thrust_.y	00006135c6d94278	2	00006135c6d2f3b0
+	gs.f_thrust_.z	00006135c6d94280	2	0000000000000000
 ---
 init end
 ---

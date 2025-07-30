@@ -26,6 +26,8 @@ EXTS += ../gncmath/src/gncmath.h
 .SUFFIXES: .cpp .o
 
 $(TARGET): $(OBJS)
+	cd "../gncmath" && make lib && cd ../guidance
+	cd "../userif" && make lib && cd ../guidance
 	$(CC) -o $(TARGET) $(INCDIR) $^ $(LIBDIR) $(LIBS) $(LDFLAGS)
 	python ../create_symbolmap_yaml.py --obj_file $(TARGET) --header_file_list $(EXTS) --sim_mode "SILS"
 

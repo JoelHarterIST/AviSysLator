@@ -1,247 +1,247 @@
 title: symbol map
 description: This is auto generated symbol map of Avisyslator GNC Prototype.
-mark_address: 0x000A9520
+mark_address: 0x000A6520
 symbols:
 -   name: gp.r_d
-    address: 0x000A92E0
+    address: 0x000A62E0
     type: double
 -   name: gp.v_d
-    address: 0x000A92E8
+    address: 0x000A62E8
     type: double
 -   name: gp.i_d
-    address: 0x000A92F0
+    address: 0x000A62F0
     type: double
 -   name: gp.gmm_d
-    address: 0x000A92F8
+    address: 0x000A62F8
     type: double
 -   name: gp.f_thrust
-    address: 0x000A9300
+    address: 0x000A6300
     type: double
 -   name: gp.mass_0
-    address: 0x000A9308
+    address: 0x000A6308
     type: double
 -   name: gp.mass_dot
-    address: 0x000A9310
+    address: 0x000A6310
     type: double
 -   name: gp.i_sp
-    address: 0x000A9318
+    address: 0x000A6318
     type: double
 -   name: gp.v_ex
-    address: 0x000A9320
+    address: 0x000A6320
     type: double
 -   name: gp.eps
-    address: 0x000A9328
+    address: 0x000A6328
     type: double
 -   name: gp.eps_r
-    address: 0x000A9330
+    address: 0x000A6330
     type: double
 -   name: gp.eps_v
-    address: 0x000A9338
+    address: 0x000A6338
     type: double
 -   name: gp.d_damp
-    address: 0x000A9340
+    address: 0x000A6340
     type: double
 -   name: gp.i_corr_min
-    address: 0x000A9348
+    address: 0x000A6348
     type: int32_t
 -   name: gp.i_corr_max_init
-    address: 0x000A934C
+    address: 0x000A634C
     type: int32_t
 -   name: gp.i_corr_max_update
-    address: 0x000A9350
+    address: 0x000A6350
     type: int32_t
 -   name: gp.i_pred_max
-    address: 0x000A9354
+    address: 0x000A6354
     type: int32_t
 -   name: gp.t_go_min
-    address: 0x000A9358
+    address: 0x000A6358
     type: double
 -   name: gp.cyc_wait
-    address: 0x000A9360
+    address: 0x000A6360
     type: int32_t
 -   name: gp.dt
-    address: 0x000A9368
+    address: 0x000A6368
     type: double
 -   name: gs.status
-    address: 0x000A9380
+    address: 0x000A6380
     type: int32_t
 -   name: gs.out_cmd
-    address: 0x000A9384
+    address: 0x000A6384
     type: int32_t
 -   name: gs.mode
-    address: 0x000A9388
+    address: 0x000A6388
     type: int32_t
 -   name: gs.mode_next
-    address: 0x000A938C
+    address: 0x000A638C
     type: int32_t
 -   name: gs.d_v_.x
-    address: 0x000A9390
+    address: 0x000A6390
     type: double
 -   name: gs.d_v_.y
-    address: 0x000A9398
+    address: 0x000A6398
     type: double
 -   name: gs.d_v_.z
-    address: 0x000A93A0
+    address: 0x000A63A0
     type: double
 -   name: gs.u_y_.x
-    address: 0x000A93A8
+    address: 0x000A63A8
     type: double
 -   name: gs.u_y_.y
-    address: 0x000A93B0
+    address: 0x000A63B0
     type: double
 -   name: gs.u_y_.z
-    address: 0x000A93B8
+    address: 0x000A63B8
     type: double
 -   name: gs.t_go
-    address: 0x000A93C0
+    address: 0x000A63C0
     type: double
 -   name: gs.k_time
-    address: 0x000A93C8
+    address: 0x000A63C8
     type: double
 -   name: gs.lmd_.x
-    address: 0x000A93D0
+    address: 0x000A63D0
     type: double
 -   name: gs.lmd_.y
-    address: 0x000A93D8
+    address: 0x000A63D8
     type: double
 -   name: gs.lmd_.z
-    address: 0x000A93E0
+    address: 0x000A63E0
     type: double
 -   name: gs.lmd_dot_.x
-    address: 0x000A93E8
+    address: 0x000A63E8
     type: double
 -   name: gs.lmd_dot_.y
-    address: 0x000A93F0
+    address: 0x000A63F0
     type: double
 -   name: gs.lmd_dot_.z
-    address: 0x000A93F8
+    address: 0x000A63F8
     type: double
 -   name: gs.lmd_dot
-    address: 0x000A9400
+    address: 0x000A6400
     type: double
 -   name: gs.v_p_.x
-    address: 0x000A9408
+    address: 0x000A6408
     type: double
 -   name: gs.v_p_.y
-    address: 0x000A9410
+    address: 0x000A6410
     type: double
 -   name: gs.v_p_.z
-    address: 0x000A9418
+    address: 0x000A6418
     type: double
 -   name: gs.r_p_.x
-    address: 0x000A9420
+    address: 0x000A6420
     type: double
 -   name: gs.r_p_.y
-    address: 0x000A9428
+    address: 0x000A6428
     type: double
 -   name: gs.r_p_.z
-    address: 0x000A9430
+    address: 0x000A6430
     type: double
 -   name: gs.r_p
-    address: 0x000A9438
+    address: 0x000A6438
     type: double
 -   name: gs.r_d_.x
-    address: 0x000A9440
+    address: 0x000A6440
     type: double
 -   name: gs.r_d_.y
-    address: 0x000A9448
+    address: 0x000A6448
     type: double
 -   name: gs.r_d_.z
-    address: 0x000A9450
+    address: 0x000A6450
     type: double
 -   name: gs.v_d_.x
-    address: 0x000A9458
+    address: 0x000A6458
     type: double
 -   name: gs.v_d_.y
-    address: 0x000A9460
+    address: 0x000A6460
     type: double
 -   name: gs.v_d_.z
-    address: 0x000A9468
+    address: 0x000A6468
     type: double
 -   name: gs.mass
-    address: 0x000A9470
+    address: 0x000A6470
     type: double
 -   name: gs.a_thrust
-    address: 0x000A9478
+    address: 0x000A6478
     type: double
 -   name: gs.dlt_v_thrust_.x
-    address: 0x000A9480
+    address: 0x000A6480
     type: double
 -   name: gs.dlt_v_thrust_.y
-    address: 0x000A9488
+    address: 0x000A6488
     type: double
 -   name: gs.dlt_v_thrust_.z
-    address: 0x000A9490
+    address: 0x000A6490
     type: double
 -   name: gs.p_.x
-    address: 0x000A9498
+    address: 0x000A6498
     type: double
 -   name: gs.p_.y
-    address: 0x000A94A0
+    address: 0x000A64A0
     type: double
 -   name: gs.p_.z
-    address: 0x000A94A8
+    address: 0x000A64A8
     type: double
 -   name: gs.f_thrust_.x
-    address: 0x000A94B0
+    address: 0x000A64B0
     type: double
 -   name: gs.f_thrust_.y
-    address: 0x000A94B8
+    address: 0x000A64B8
     type: double
 -   name: gs.f_thrust_.z
-    address: 0x000A94C0
+    address: 0x000A64C0
     type: double
 -   name: gs.a_thrust_.x
-    address: 0x000A94C8
+    address: 0x000A64C8
     type: double
 -   name: gs.a_thrust_.y
-    address: 0x000A94D0
+    address: 0x000A64D0
     type: double
 -   name: gs.a_thrust_.z
-    address: 0x000A94D8
+    address: 0x000A64D8
     type: double
 -   name: gs.cyc_cnt
-    address: 0x000A94E0
+    address: 0x000A64E0
     type: int32_t
 -   name: gs.t
-    address: 0x000A94E8
+    address: 0x000A64E8
     type: double
 -   name: gs.t_c
-    address: 0x000A94F0
+    address: 0x000A64F0
     type: double
 -   name: gs.d_v_
-    address: 0x000A9380
+    address: 0x000A6380
     type: vec3_t
 -   name: gs.u_y_
-    address: 0x000A9398
+    address: 0x000A6398
     type: vec3_t
 -   name: gs.lmd_
-    address: 0x000A93B0
+    address: 0x000A63B0
     type: vec3_t
 -   name: gs.lmd_dot_
-    address: 0x000A93C8
+    address: 0x000A63C8
     type: vec3_t
 -   name: gs.v_p_
-    address: 0x000A93E0
+    address: 0x000A63E0
     type: vec3_t
 -   name: gs.r_p_
-    address: 0x000A93F8
+    address: 0x000A63F8
     type: vec3_t
 -   name: gs.r_d_
-    address: 0x000A9410
+    address: 0x000A6410
     type: vec3_t
 -   name: gs.v_d_
-    address: 0x000A9428
+    address: 0x000A6428
     type: vec3_t
 -   name: gs.dlt_v_thrust_
-    address: 0x000A9440
+    address: 0x000A6440
     type: vec3_t
 -   name: gs.p_
-    address: 0x000A9458
+    address: 0x000A6458
     type: vec3_t
 -   name: gs.f_thrust_
-    address: 0x000A9470
+    address: 0x000A6470
     type: vec3_t
 -   name: gs.a_thrust_
-    address: 0x000A9488
+    address: 0x000A6488
     type: vec3_t
