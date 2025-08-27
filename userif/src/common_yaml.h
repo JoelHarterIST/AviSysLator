@@ -1,8 +1,8 @@
 /// \file common_yaml.h
 /// \brief This file contains the common yaml schema.
 
-#ifndef _COMMON_YAML_H
-#define _COMMON_YAML_H
+#ifndef __COMMON_YAML_H__
+#define __COMMON_YAML_H__
 
 #include "common.h"
 #include <cyaml/cyaml.h>

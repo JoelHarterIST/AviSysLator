@@ -1,0 +1,5 @@
+seq,,,event,,,,,,,judge,,,,,,,,,exec,,,,,
+step,step_name,,id,name,next_step,next_seq,all_and / all_or,next,,id,name,type,ref,ope,thrs,num,next,,id,name,type,dest,src,next
+0,VALVE_CLOSE,,0,VALVE_CLOSE,1,,ALL_AND,,,,,,,,,,,,0,change_state_to_wait_valve_close,INT,fcu_if_set.state,FSEQ_WAIT_VLV_CLOSE,
+,,,,,,,,,,,,,,,,,,,,,,,,
+1,WAIT_VLV_CLOSE,,1,STOP,,,ALL_AND,,,0,valve_close_time,INT,step_timer,>=,50,1,,,1,change_state_to_stop,INT,fcu_if_set.state,FSEQ_STOP,

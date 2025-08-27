@@ -1,0 +1,12 @@
+seq,,,event,,,,,,,judge,,,,,,,,,exec,,,,,
+step,step_name,,id,name,next_step,next_seq,all_and / all_or,next,,id,name,type,ref,ope,thrs,num,next,,id,name,type,dest,src,next
+0,STEP0,,0,START_SEQ,1,,ALL_AND,,,0,start_time,DBL,mission_time_s,>=,0,1,,,0,change_siideal_mode,INT,siis.mode,SIIDEAL_MODE_ON,1
+,,,,,,,,,,,,,,,,,,,1,change_navrot_mode,INT,nrs.mode,NAVROT_MODE_ON,2
+,,,,,,,,,,,,,,,,,,,2,change_guirot_mode,INT,grs.mode,GUIROT_MODE_ON,3
+,,,,,,,,,,,,,,,,,,,3,change_cntrot_mode,INT,crs.mode,CNTROT_MODE_PD,4
+,,,,,,,,,,,,,,,,,,,4,change_aiideal_mode,INT,aiis.mode,AIIDEAL_MODE_ON,
+,,,,,,,,,,,,,,,,,,,,,,,,
+1,STEP1,,1,MOVE_STEP2,2,,ALL_AND,,,1,control_stable,INT,crs.flg_stbl,==,CNTROT_STBL_ON,2000,,,5,change_ang_target_z,DBL,grp.ang_tgt_.z,-0.01745,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+2,STEP2,,2,STOP_SEQ,,,ALL_AND,,,2,control_stable,INT,crs.flg_stbl,==,CNTROT_STBL_ON,2000,,,,,,,,

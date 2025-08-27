@@ -6,13 +6,13 @@
 typedef struct {
 	double dt;
 	int32_t num_of_loop;
-} main_params_t;
+} main_param_t;
 
 typedef struct {
 	double t;
 } main_state_t;
 
-extern main_params_t mp;
+extern main_param_t mp;
 extern main_state_t ms;
 
 #endif

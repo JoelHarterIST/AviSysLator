@@ -10,7 +10,7 @@
 
 int32_t mark_variable = 0; ///< mark variable for calculating the base address of the symbol map
 
-user_interface_params_t uip = {0}; 							 ///< user interface parameters
+user_interface_param_t uip = {0}; 							 ///< user interface parameters
 time_series_log_data_t tsld[TIME_SERIES_LOG_DATA_MAX] = {0}; ///< time series log data array
 cyclic_log_data_t cold[CYCLIC_LOG_DATA_MAX] = {0}; 			 ///< cyclic log data array
 event_log_data_t evld[EVENT_LOG_DATA_MAX] = {0}; 			 ///< event log data array

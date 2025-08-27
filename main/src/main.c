@@ -1,10 +1,10 @@
 #include "common.h"
 #include "main_ext.h"
-#include "guidance.h"
-#include "plant.h"
+#include "guitrns.h"
+#include "ptrns.h"
 #include "userif.h"
 
-main_params_t mp;
+main_param_t mp;
 main_state_t ms;
 
 int main(int argc, char* argv[]) {
@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 
 	// ## guidance init
 	// none
-	guidance_init();
+	guitrns_init();
 
 	// ## control init
 	// none
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
 		// none
 
 		// ## guidance
-		guidance_main(&ps, &gs);
+		guitrns_main(&pts, &gts);
 
 		// ## control
 		// none
@@ -86,7 +86,7 @@ int main(int argc, char* argv[]) {
 		// none
 
 		// ## plant
-		plant_main(&ms.t, mp.dt, &ps);
+		ptrns_main(&ms.t, mp.dt, &pts);
 
 		// ## user interface (log)
 		userif_main(i, ms.t);

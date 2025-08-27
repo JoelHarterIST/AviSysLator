@@ -1,8 +1,8 @@
 /// \file symbol_map_yaml.h
 /// \brief This file contains the symbol map yaml schema.
 
-#ifndef _SYMBOL_MAP_YAML_H
-#define _SYMBOL_MAP_YAML_H
+#ifndef __SYMBOL_MAP_YAML_H__
+#define __SYMBOL_MAP_YAML_H__
 
 #include "common.h"
 #include <cyaml/cyaml.h>

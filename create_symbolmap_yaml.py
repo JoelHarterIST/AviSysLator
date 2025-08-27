@@ -5,7 +5,7 @@ import yaml
 from enum import IntEnum, auto
 
 element_type_keys = ["int32_t", "double"]
-element_type_keys_math = ["vec3_t", "mat33_t", "quat_t"]
+element_type_keys_math = ["vec3_t", "mat33_t", "quat_t","int32_t", "double"]
 element_type_size_dict = {"int32_t": 4,
                           "double":  8,
                           "vec3_t":  8*3,
@@ -343,7 +343,21 @@ class SymbolInf:
         Description:
             コピーコンストラクタ
         """
-        return SymbolInf(self._name, self._address, self._type)    
+        return SymbolInf(self._name, self._address, self._type) 
+    def __eq__(self, other):
+        """
+        Description:
+            等価演算子
+        Param:
+            other: SymbolInf
+                比較対象のSymbolInfオブジェクト
+        Return:
+            bool
+                等価ならTrue, それ以外はFalse
+        """
+        if type(other) == SymbolInf:
+            return self._name == other._name and self._address == other._address and self._type == other._type
+        return False       
 
 class SymbolInfoMap:
     def __init__(self, smb_list:list[SymbolInf]):
@@ -365,8 +379,12 @@ class SymbolInfoMap:
             +=の算術演算子
         """
         if type(other) == SymbolInfoMap:
-            self._smb_list +=  other._smb_list
-            return self          
+            for temp_other in other._smb_list:
+                if temp_other in self._smb_list:
+                    pass
+                else:
+                    self._smb_list.append(temp_other)  
+        return self          
 
     def parse_symbol(self, mode:KeyMode, sd_map:StructDefInfMap, val_map:ValInfoMap):
         """
@@ -394,7 +412,7 @@ class SymbolInfoMap:
                 mem_list = sd_map.get_members(mode, v._type, "", mem_list)
                 st_mem_dict[v._type] = mem_list
 
-        print(st_mem_dict)
+        #print(st_mem_dict)
 
         for v in val_map._v_list:
             if v._address == 0:
@@ -408,8 +426,9 @@ class SymbolInfoMap:
                 for temp_mem_list in st_mem_dict[v._type]:
                     mem_name = temp_mem_list[0]
                     mem_type = temp_mem_list[1]
-                    if mem_type == "double" and (v._address + offset)%self._align > 0:
+                    if (mem_type == "double" or mem_type == "vec3_t" or mem_type == "mat33_t" or mem_type == "quat_t") and (v._address + offset)%self._align > 0:
                         # 構造体のdoubleは8byteの境界で整列する
+                        # またvec3_t, mat33_t, quat_tも同様に先頭のメンバがdoubleの場合は8byteの境界で整列する
                         padding = self._align - (v._address + offset)%self._align
                         offset += padding
                     smb = SymbolInf(v._name + '.' + mem_name, v._address + offset, mem_type)
@@ -603,27 +622,32 @@ def create_symbolmap_yaml(header_file_list:list[str], obj_file:str, sybl_map_pat
     sybl_temp_path = "symbol_map_temp.txt"
     sd_map = StructDefInfMap([])
     v_map = ValInfoMap([])
-    
+
+    # 指定したファイルから構造体を解析する
+    type_list = []
     for path in header_file_list:
         # 指定したファイルを読み込む
         words = open_cfile(path)
 
-        # 指定したファイルから構造体を解析する
         sd_map_temp = StructDefInfMap([])
         sd_map_temp.parse_struct(words)
-        type_list = sd_map_temp.get_type_list()
-
-        # 構造体の宣言を解析する
-        v_map_temp = ValInfoMap([])
-        if ("ext.h" in path) == True:
-            #print("e", path)
-            v_map_temp.parse_struct_decl(words, type_list) 
-        else:
-            #print("n", path)
-            pass
+        type_list += sd_map_temp.get_type_list()
 
         sd_map += sd_map_temp
+    type_list += element_type_keys # 基本型を追加
+
+    # 指定したファイルから変数の宣言を解析する
+    for path in header_file_list:
+        if ((("ext.h" in path) == False) and (("int.h" in path) == False)):
+            continue
+            
+        # 指定したファイルを読み込む
+        words = open_cfile(path)
+
+        v_map_temp = ValInfoMap([])
+        v_map_temp.parse_struct_decl(words, type_list) 
         v_map  += v_map_temp
+        # v_map_temp.dump()
 
     # nmコマンドでsymbolmapを出力する
     if sim_mode == SimMode.SILS:
@@ -636,12 +660,12 @@ def create_symbolmap_yaml(header_file_list:list[str], obj_file:str, sybl_map_pat
     mode = KeyMode.NORMAL
     smb_map = SymbolInfoMap([])
     smb_map.parse_symbol(mode, sd_map, v_map)
-    smb_map.dump()
+    # smb_map.dump()
  
     mode = KeyMode.MATH
     smb_map_math = SymbolInfoMap([])
     smb_map_math.parse_symbol(mode, sd_map, v_map)
-    smb_map_math.dump()
+    # smb_map_math.dump()
 
     smb_map += smb_map_math
  
@@ -660,9 +684,9 @@ if __name__ == '__main__':
     # 引数を解析
     args = parser.parse_args()
     
-    print(f'objest:{args.obj_file}')
-    print(f'header_file_list:{args.header_file_list}')
-    print(f'sim_mode:{args.sim_mode}')     
+    # print(f'objest:{args.obj_file}')
+    # print(f'header_file_list:{args.header_file_list}')
+    # print(f'sim_mode:{args.sim_mode}')     
 
     sybl_map_path = "symbol_map.yaml"
     if args.sim_mode == 'HILS':

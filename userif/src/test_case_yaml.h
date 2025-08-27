@@ -1,8 +1,8 @@
 /// \file test_case_yaml.h
 /// \brief This file contains the test case yaml schema.
 
-#ifndef _TEST_CASE_YAML_H
-#define _TEST_CASE_YAML_H
+#ifndef __TEST_CASE_YAML_H__
+#define __TEST_CASE_YAML_H__
 
 #include "common.h"
 #include "common_yaml.h"

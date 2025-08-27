@@ -1,8 +1,8 @@
 /// \file userif_ext.h
 /// \brief This file contains the user interface extension.
 
-#ifndef _USERIF_EXT_H
-#define _USERIF_EXT_H
+#ifndef __USERIF_EXT_H__
+#define __USERIF_EXT_H__
 
 #include "common.h"
 
@@ -52,7 +52,7 @@ typedef struct  {
 typedef struct {
 	int time_series_log_cycle; ///< time series log cycle
 	int std_out_log_cycle; 	   ///< stdout log cycle
-} user_interface_params_t;
+} user_interface_param_t;
 
 typedef struct {
 	char name[LOG_NAME_SIZE]; ///< variable name
@@ -93,7 +93,7 @@ typedef struct {
 	event_monitor_data_t evmd[EVENT_MONITOR_DATA_MAX]; ///< event monitor data 
 } event_log_data_t;
 
-extern user_interface_params_t uip;
+extern user_interface_param_t uip;
 extern time_series_log_data_t tsld[TIME_SERIES_LOG_DATA_MAX];
 extern cyclic_log_data_t sold[CYCLIC_LOG_DATA_MAX];
 extern event_log_data_t evld[EVENT_LOG_DATA_MAX];

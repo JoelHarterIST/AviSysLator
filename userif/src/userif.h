@@ -1,8 +1,8 @@
 /// \file userif.h
 /// \brief This file contains the user interface.
 
-#ifndef _USERIF_H
-#define _USERIF_H
+#ifndef __USERIF_H__
+#define __USERIF_H__
 
 #include "common.h"
 #include "userif_ext.h"

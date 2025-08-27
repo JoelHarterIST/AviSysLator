@@ -9,50 +9,50 @@ init:
       value: 25000
     - variable: ms.t
       value: 0.0
-    - variable: pp.isp
+    - variable: ptp.isp
       value: 350
-    - variable: ps.pos_
+    - variable: pts.pos_
       value: -4020669.944, 2639571.27, 4372906.047
-    - variable: ps.vel_
+    - variable: pts.vel_
       value: -2046.201518, -1830.379092, 580.2079586
 std_out_log: 
   output_file: std_out_log_output.txt
   cycle: 100
   cyclic_log_variables: 
-    - gs.modes
-    - gs.status
-    - gs.t
-    - gs.t_go
-    - gs.mass
-    - gs.cyc_cnt
-    - gs.a_thrust
-    - ps.acl_.x
-    - ps.acl_.y
-    - ps.acl_.z
+    - gts.mode
+    - gts.status
+    - gts.t
+    - gts.t_go
+    - gts.mass
+    - gts.cyc_cnt
+    - gts.a_thrust
+    - pts.acl_.x
+    - pts.acl_.y
+    - pts.acl_.z
   event_log: 
-    - variable: gs.mode
+    - variable: gts.mode
       option: EQ
       threshold: 0
       monitor: 
-        - ps.pos_.x
-        - ps.pos_.y
-        - ps.pos_.z
-        - ps.vel_.x
-        - ps.vel_.y
-        - ps.vel_.z
-        - gs.f_thrust_.x
-        - gs.f_thrust_.y
-        - gs.f_thrust_.z
+        - pts.pos_.x
+        - pts.pos_.y
+        - pts.pos_.z
+        - pts.vel_.x
+        - pts.vel_.y
+        - pts.vel_.z
+        - gts.f_thrust_.x
+        - gts.f_thrust_.y
+        - gts.f_thrust_.z
 time_series_log: 
   output_file: time_series_log_output.tsv
   cycle: 100
   time_series_log_variables: 
-    - ps.pos_.x
-    - ps.pos_.y
-    - ps.pos_.z
-    - ps.vel_.x
-    - ps.vel_.y
-    - ps.vel_.z
-    - gs.f_thrust_.x
-    - gs.f_thrust_.y
-    - gs.f_thrust_.z
+    - pts.pos_.x
+    - pts.pos_.y
+    - pts.pos_.z
+    - pts.vel_.x
+    - pts.vel_.y
+    - pts.vel_.z
+    - gts.f_thrust_.x
+    - gts.f_thrust_.y
+    - gts.f_thrust_.z

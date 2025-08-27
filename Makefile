@@ -1,38 +1,39 @@
 CC = gcc
 
 CFLAGS = -DAVISYSLATOR_GNC
-LDFLAGS = -lm -lcyaml -lyaml
+LDFLAGS = -lm
+LDFLAGS += -lcyaml
+LDFLAGS += -lyaml
 
 TARGET = avsl
 
 OBJS = main/src/main.o
 OBJS += userif/src/userif.o
-OBJS += gncmath/src/gncmath.o
-OBJS += guidance/src/guidance.o
-OBJS += plant/src/plant.o
+OBJS += guidance/guitrns/src/guitrns.o
+OBJS += plant/ptrns/src/ptrns.o
 
 INCDIR = -I./common/src
 INCDIR += -I./main/src
 INCDIR += -I./userif/src
-INCDIR += -I./gncmath/src
-INCDIR += -I./guidance/src
-INCDIR += -I./plant/src
+INCDIR += -I./guidance/guitrns/src
+INCDIR += -I./plant/ptrns/src
+INCDIR += -I./lib/gncmath/src
 
-LIBDIR = -L./gncmath
+LIBDIR = -L./lib/gncmath
 
 LIBS = -lgncmath
 
 LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 EXTS = ./main/src/main_ext.h
-EXTS += ./gncmath/src/gncmath.h
-EXTS += ./guidance/src/guidance_ext.h
-EXTS += ./plant/src/plant_ext.h
+EXTS += ./lib/gncmath/src/gncmath.h
+EXTS += ./guidance/guitrns/src/guitrns_ext.h
+EXTS += ./plant/ptrns/src/ptrns_ext.h
 
 .SUFFIXES: .c .o
 
 $(TARGET): $(OBJS)
-	cd "./gncmath" && make lib && cd ..
+	cd "./lib/gncmath" && make lib && cd ../../
 	$(CC) -o $(TARGET) $(INCDIR) $^ $(LIBDIR) $(LIBS) $(LDFLAGS)
 	python create_symbolmap_yaml.py --obj_file $(TARGET) --header_file_list $(EXTS) --sim_mode "SILS"
 
