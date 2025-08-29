@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
 		// none
 
 		// ## guidance
-		guitrns_main(&pts, &gts);
+		guitrns_main(0);
 
 		// ## control
 		// none
@@ -86,7 +86,8 @@ int main(int argc, char* argv[]) {
 		// none
 
 		// ## plant
-		ptrns_main(&ms.t, mp.dt, &pts);
+		ptrns_main(0);
+		ms.t += mp.dt;
 
 		// ## user interface (log)
 		userif_main(i, ms.t);

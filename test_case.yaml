@@ -15,6 +15,12 @@ init:
       value: -4020669.944, 2639571.27, 4372906.047
     - variable: pts.vel_
       value: -2046.201518, -1830.379092, 580.2079586
+    - variable: pto.pos_
+      value: -4020669.944, 2639571.27, 4372906.047
+    - variable: pto.vel_
+      value: -2046.201518, -1830.379092, 580.2079586
+    - variable: pti.mode
+      value: 2
 std_out_log: 
   output_file: std_out_log_output.txt
   cycle: 100

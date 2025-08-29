@@ -1,9 +1,9 @@
-/// @file guitrns_ext.h
-/// @brief externals of guidance translation
+/// @file ptrns_int.h
+/// @brief internals of plant translation
 
 
-#ifndef __GUITRNS_EXT_H__
-#define __GUITRNS_EXT_H__
+#ifndef __PTRNS_INT_H__
+#define __PTRNS_INT_H__
 
 
 // # システムヘッダの取り込み
@@ -22,9 +22,7 @@
 
 
 // # #defineマクロ
-#define GUITRNS_MODE_OFF (0)
-#define GUITRNS_MODE_INIT (1)
-#define GUITRNS_MODE_ON (2)
+// none
 
 
 // # #define関数マクロ
@@ -32,18 +30,18 @@
 
 
 // # typedef定義（intやcharといった基本型に対する型定義）
-// ## input
+// ## param
 typedef struct {
-	int32_t mode;
+	double isp;
+} ptrns_param_t;
+
+// ## state
+typedef struct {
+    int32_t mode;
 	vec3_t pos_;
 	vec3_t vel_;
-} guitrns_input_t;
-
-// ## output
-typedef struct {
-	int32_t mode;
-	vec3_t a_thrust_;
-} guitrns_output_t;
+	vec3_t acl_;
+} ptrns_state_t;
 
 
 // # enumタグ定義（typedefを同時に行う）
@@ -55,8 +53,8 @@ typedef struct {
 
 
 // # extern変数宣言
-extern guitrns_input_t gti;
-extern guitrns_output_t gto;
+extern ptrns_param_t ptp;
+extern ptrns_state_t pts;
 
 
 // # 関数プロトタイプ宣言

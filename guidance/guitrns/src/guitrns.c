@@ -1,8 +1,26 @@
+/// @file guitrns.c
+/// @brief guidance translation
+
+
+// # システムヘッダの取り込み
+// none
+
+
+// # ユーザ作成ヘッダの取り込み
+// ## 共通ヘッダ
+#include "common.h"
+
+// ## 他モジュールヘッダ
+#include "gncmath.h"
+#include "ptrns_ext.h"
+
+// ## 自モジュールヘッダ
 #include "guitrns.h"
+#include "guitrns_ext.h"
+#include "guitrns_int.h"
 
-guitrns_param_t gtp;
-guitrns_state_t gts;
 
+// # 自ファイル内でのみ使用する#defineマクロ
 #define LOC_PRED_MAX (0)
 #define LOC_CORR_MAX (-1)
 #define LOC_T_GO_MIN (-2)
@@ -13,8 +31,60 @@ guitrns_state_t gts;
 #define GS_MODE_WAIT (3)
 #define GS_MODE_FINAL (4)
 
-int guitrns_init() {
 
+// # 自ファイル内でのみ使用する#define関数マクロ
+// none
+
+
+// # 自ファイル内でのみ使用するtypedef定義
+// none
+
+
+// # 自ファイル内でのみ使用するenumタグ定義
+// none
+
+
+// # 自ファイル内でのみ使用するstruct/unionタグ定義
+// none
+
+
+// # ファイル内で共有するstatic変数宣言
+// none
+
+
+// # static関数宣言
+// none
+
+
+// # 変数定義
+// ## input
+guitrns_input_t gti;
+
+// ## output
+guitrns_output_t gto;
+
+// ## param
+guitrns_param_t gtp;
+
+// ## state
+guitrns_state_t gts;
+
+
+// # 関数定義
+// ## 内部関数プロトタイプ宣言
+void guitrns_update_mode(int32_t mode_input, int32_t* mode_state, int32_t* mode_output);
+void guitrns_switch_mode(int32_t mode_state);
+void guitrns_off(guitrns_input_t* pgti, guitrns_state_t* pgts, guitrns_output_t* pgto);
+void guitrns_input(ptrns_output_t* ppto, guitrns_input_t* pgti);
+void guitrns_output(guitrns_state_t* pgts, guitrns_output_t* pgto);
+int guitrns_main_(guitrns_input_t* pgti, guitrns_state_t* pgts);
+void guitrns_update_cmd_on(guitrns_state_t* pgts);
+void guitrns_update_cmd_off(guitrns_state_t* pgts);
+int guitrns_core(int init, vec3_t r_, vec3_t v_, guitrns_state_t* pgts);
+
+// ## 外部公開関数定義
+/// @brief 並進誘導 : 初期化
+void guitrns_init() {
 	// # set guitrns parameter
 	// a = 6378137.0;% [m] semi-major axis <WGS-84>
 	// r_D = Constants.a+230e3;  % [m] desired orbital radius
@@ -60,99 +130,169 @@ int guitrns_init() {
 	gtp.dt = 0.01;
 
 	// # set guitrns state
-	gts.mode = GS_MODE_INIT;
-	gts.mode_next = GS_MODE_INIT;
 	gts.a_thrust = gtp.f_thrust/gtp.mass_0;
 	gts.mass = gtp.mass_0;
 
-	return EXIT_SUCCESS;
+	// # set guitrns mode for next cycle
+	gti.mode = GS_MODE_INIT;
+
 }
 
-int guitrns_main(ptrns_state_t* ppts, guitrns_state_t* pgts) {
-	pgts->status = 0;
-	pgts->mode = pgts->mode_next;
-	switch (pgts->mode) {
+/// @brief 並進誘導 : メイン
+/// @param [in] slot_num slot_number
+void guitrns_main(int32_t slot_num) {
+	// 呼び出しスロット定義
+	static const int32_t _slot_intvl = 1; // 呼び出しスロット間隔 [0.5ms]
+	static const int32_t _slot_ofst = 0; // 呼び出しスロットオフセット [0.5ms]
+
+	// 呼び出しスロット判定
+	if ((slot_num % _slot_intvl) == _slot_ofst) {
+		// モード更新
+		guitrns_update_mode(gti.mode, &(gts.mode), &(gto.mode));
+		// モード分岐
+		guitrns_switch_mode(gts.mode);
+	}
+	else {
+		// none
+	}
+}
+
+
+// ## 内部関数定義
+/// @brief 並進誘導 : モード更新
+/// @param [in] mode_input
+/// @param [out] mode_state
+/// @param [out] mode_output
+void guitrns_update_mode(int32_t mode_input, int32_t* mode_state, int32_t* mode_output) {
+	*mode_state = mode_input;
+	*mode_output = *mode_state;
+}
+
+/// @brief 並進誘導 : モード分岐
+/// @param [in] mode_state
+void guitrns_switch_mode(int32_t mode_state) {
+	// init gts.status
+	gts.status = 0;
+
+	switch (mode_state) {
 		case GS_MODE_INIT:
-			pgts->status = guitrns_core(1, ppts->pos_, ppts->vel_, pgts);
-			if (0 > pgts->status) {
-				return pgts->status;
+			guitrns_input(&pto, &gti);
+			gts.status = guitrns_core(1, gti.pos_, gti.vel_, &gts);
+			if (0 > gts.status) {
+				// error handle future implementation
 			}
-			pgts->t = 0.0;
-			pgts->t_c = 0.0;
-			pgts->cyc_cnt = 0;
-			pgts->mode_next = GS_MODE_WAIT;
-			pgts->out_cmd = 1;
+			gts.t = 0.0;
+			gts.t_c = 0.0;
+			gts.cyc_cnt = 0;
+			guitrns_update_cmd_on(&gts);
+			guitrns_output(&gts, &gto);
+			gti.mode = GS_MODE_WAIT; // set mode for next cycle
 			break;
 		case GS_MODE_UPDATE:
-			pgts->a_thrust = gtp.f_thrust/pgts->mass;
-			pgts->status = guitrns_core(0, ppts->pos_, ppts->vel_, pgts);
-			if (0 > pgts->status) {
-				return pgts->status;
+			guitrns_input(&pto, &gti);
+			gts.a_thrust = gtp.f_thrust/gts.mass;
+			gts.status = guitrns_core(0, gti.pos_, gti.vel_, &gts);
+			if (0 > gts.status) {
+				// error handle future implementation
 			}
-			pgts->t_c = 0.0;
-			pgts->cyc_cnt = 0;
-			pgts->dlt_v_thrust_ = zeros_v3();
-			pgts->mode_next = GS_MODE_WAIT;
-			pgts->out_cmd = 1;
+			gts.t_c = 0.0;
+			gts.cyc_cnt = 0;
+			gts.dlt_v_thrust_ = zeros_v3();
+			guitrns_update_cmd_on(&gts);
+			guitrns_output(&gts, &gto);
+			gti.mode = GS_MODE_WAIT; // set mode for next cycle
 			break;
 		case GS_MODE_WAIT:
-			pgts->cyc_cnt++;
-			pgts->out_cmd = 1;
-			if (gtp.cyc_wait <= pgts->cyc_cnt) {
-				if (gtp.t_go_min < (pgts->t_go - 1.0)) {
-					pgts->mode_next = GS_MODE_UPDATE;
+			guitrns_update_cmd_on(&gts);
+			guitrns_output(&gts, &gto);
+			gts.cyc_cnt++;
+			if (gtp.cyc_wait <= gts.cyc_cnt) {
+				if (gtp.t_go_min < (gts.t_go - 1.0)) {
+					gti.mode = GS_MODE_UPDATE; // set mode for next cycle
 				}
 				else {
-					pgts->mode_next = GS_MODE_FINAL;
+					gti.mode = GS_MODE_FINAL; // set mode for next cycle
 				}
 			}
 			break;
 		case GS_MODE_FINAL:
-			if (gtp.t_go_min < pgts->t_c) {
-				pgts->mode_next = GS_MODE_OFF;
-				pgts->out_cmd = 0;
+			if (gtp.t_go_min >= gts.t_c) {
+				guitrns_update_cmd_on(&gts);
 			}
+			else {
+				guitrns_update_cmd_off(&gts);
+				gti.mode = GS_MODE_OFF; // set mode for next cycle
+			}
+			guitrns_output(&gts, &gto);
 			break;
-		default:
-			pgts->out_cmd = 0;
+		default: // including GS_MODE_OFF
+			guitrns_update_cmd_off(&gts);
+			guitrns_off(&gti, &gts, &gto);
 			break;
 	}
+}
 
-	// # output guitrns command
-	if (pgts->out_cmd) {
-		// # update time
-		pgts->t = pgts->t + gtp.dt;
-		pgts->t_c = pgts->t_c + gtp.dt;
+/// @brief 並進誘導 : 機能オフ
+/// @param [out] pgti pointer to guitrns input
+/// @param [out] pgts pointer to guitrns state
+/// @param [out] pgto pointer to guitrns output
+void guitrns_off(guitrns_input_t* pgti, guitrns_state_t* pgts, guitrns_output_t* pgto) {
+	// off input
+	pgti->pos_ = zeros_v3();
+	pgti->vel_ = zeros_v3();
 
-		// # update mass
-		pgts->mass = gtp.mass_0 + gtp.mass_dot*pgts->t;
+	// off state
+	// TBD
 
-		// # calc acceleration vector
-		// ## Pfun=@(t)lambda_.*cos(lambda_dot.*(t-K))+lambda_dot_/lambda_dot.*sin(lambda_dot.*(t-K));% <ref1 p569 eq15>
-		vec3_t _lmd_xxx_k_ = scl_v3((cos(pgts->lmd_dot*(pgts->t_c - pgts->k_time))), pgts->lmd_);
-		vec3_t _lmd_dot_lmd_dot_ = scl_v3((1.0/pgts->lmd_dot), pgts->lmd_dot_);
-		vec3_t _lmd_dot_xxx_k_ = scl_v3(sin(pgts->lmd_dot*(pgts->t_c - pgts->k_time)), _lmd_dot_lmd_dot_);
-		pgts->p_ = add_v3_v3(_lmd_xxx_k_, _lmd_dot_xxx_k_);
+	// off output
+	pgto->a_thrust_ = zeros_v3();
+}
 
-		// ## F_T_=F_T*P_(t_c);% [N] thrust vector
-		pgts->f_thrust_ = scl_v3(gtp.f_thrust, pgts->p_);
+/// @brief 並進誘導 : 入力
+/// @param [in] ppto pointer to ptrns output
+/// @param [out] pgti pointer to guitrns input
+void guitrns_input(ptrns_output_t* ppto, guitrns_input_t* pgti) {
+	pgti->pos_ = ppto->pos_;
+	pgti->vel_ = ppto->vel_;
+}
 
-		// ## a_T_=F_T_/m(t);% [m/s^2] acceleration due to thrust
-		pgts->a_thrust_ = scl_v3((1.0/pgts->mass), pgts->f_thrust_);
+/// @brief 並進誘導 : 出力
+/// @param [in] pgts pointer to guitrns state
+/// @param [out] pgto pointer to guitrns output
+void guitrns_output(guitrns_state_t* pgts, guitrns_output_t* pgto) {
+	pgto->a_thrust_ = pgts->a_thrust_;
+}
 
-		// # update dlt_v_thrust
-		// ## Deltav_T_=Deltav_T_+a_T_*dt_c;% accumulate change in speed due to thrust
-		vec3_t _a_thrust_dt_ = scl_v3(gtp.dt, pgts->a_thrust_);
-		pgts->dlt_v_thrust_ = add_v3_v3(pgts->dlt_v_thrust_, _a_thrust_dt_); 
+void guitrns_update_cmd_on(guitrns_state_t* pgts) {
+	// # update time
+	pgts->t = pgts->t + gtp.dt;
+	pgts->t_c = pgts->t_c + gtp.dt;
 
-		// # plant interface
-		ppts->acl_ = pgts->a_thrust_;
-	}
-	else {
-		ppts->acl_ = zeros_v3();
-	}
+	// # update mass
+	pgts->mass = gtp.mass_0 + gtp.mass_dot*pgts->t;
 
-	return EXIT_SUCCESS;
+	// # calc acceleration vector
+	// ## Pfun=@(t)lambda_.*cos(lambda_dot.*(t-K))+lambda_dot_/lambda_dot.*sin(lambda_dot.*(t-K));% <ref1 p569 eq15>
+	vec3_t _lmd_xxx_k_ = scl_v3((cos(pgts->lmd_dot*(pgts->t_c - pgts->k_time))), pgts->lmd_);
+	vec3_t _lmd_dot_lmd_dot_ = scl_v3((1.0/pgts->lmd_dot), pgts->lmd_dot_);
+	vec3_t _lmd_dot_xxx_k_ = scl_v3(sin(pgts->lmd_dot*(pgts->t_c - pgts->k_time)), _lmd_dot_lmd_dot_);
+	pgts->p_ = add_v3_v3(_lmd_xxx_k_, _lmd_dot_xxx_k_);
+
+	// ## F_T_=F_T*P_(t_c);% [N] thrust vector
+	pgts->f_thrust_ = scl_v3(gtp.f_thrust, pgts->p_);
+
+	// ## a_T_=F_T_/m(t);% [m/s^2] acceleration due to thrust
+	pgts->a_thrust_ = scl_v3((1.0/pgts->mass), pgts->f_thrust_);
+
+	// # update dlt_v_thrust
+	// ## Deltav_T_=Deltav_T_+a_T_*dt_c;% accumulate change in speed due to thrust
+	vec3_t _a_thrust_dt_ = scl_v3(gtp.dt, pgts->a_thrust_);
+	pgts->dlt_v_thrust_ = add_v3_v3(pgts->dlt_v_thrust_, _a_thrust_dt_);
+}
+
+
+void guitrns_update_cmd_off(guitrns_state_t* pgts) {
+	pgts->a_thrust_ = zeros_v3();
 }
 
 int guitrns_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t* pgts) {
@@ -587,3 +727,67 @@ int guitrns_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t* pgts) {
 
 	return EXIT_SUCCESS;
 }
+
+// int guitrns_main_(guitrns_input_t* pgti, guitrns_state_t* pgts) {
+// 	pgts->status = 0;
+// 	// pgts->mode = pgts->mode_next;
+// 	switch (pgts->mode) {
+// 		case GS_MODE_INIT:
+// 			pgts->status = guitrns_core(1, pgti->pos_, pgti->vel_, pgts);
+// 			if (0 > pgts->status) {
+// 				return pgts->status;
+// 			}
+// 			pgts->t = 0.0;
+// 			pgts->t_c = 0.0;
+// 			pgts->cyc_cnt = 0;
+// 			// pgts->mode_next = GS_MODE_WAIT;
+// 			pgts->out_cmd = 1;
+// 			pgti->mode = GS_MODE_WAIT; // set mode for next cycle
+// 			break;
+// 		case GS_MODE_UPDATE:
+// 			pgts->a_thrust = gtp.f_thrust/pgts->mass;
+// 			pgts->status = guitrns_core(0, pgti->pos_, pgti->vel_, pgts);
+// 			if (0 > pgts->status) {
+// 				return pgts->status;
+// 			}
+// 			pgts->t_c = 0.0;
+// 			pgts->cyc_cnt = 0;
+// 			pgts->dlt_v_thrust_ = zeros_v3();
+// 			// pgts->mode_next = GS_MODE_WAIT;
+// 			pgts->out_cmd = 1;
+// 			pgti->mode = GS_MODE_WAIT; // set mode for next cycle
+// 			break;
+// 		case GS_MODE_WAIT:
+// 			pgts->cyc_cnt++;
+// 			pgts->out_cmd = 1;
+// 			if (gtp.cyc_wait <= pgts->cyc_cnt) {
+// 				if (gtp.t_go_min < (pgts->t_go - 1.0)) {
+// 					// pgts->mode_next = GS_MODE_UPDATE;
+// 					pgti->mode = GS_MODE_UPDATE; // set mode for next cycle
+// 				}
+// 				else {
+// 					// pgts->mode_next = GS_MODE_FINAL;
+// 					pgti->mode = GS_MODE_FINAL; // set mode for next cycle
+// 				}
+// 			}
+// 			break;
+// 		case GS_MODE_FINAL:
+// 			if (gtp.t_go_min < pgts->t_c) {
+// 				// pgts->mode_next = GS_MODE_OFF;
+// 				pgts->out_cmd = 0;
+// 				pgti->mode = GS_MODE_OFF; // set mode for next cycle
+// 			}
+// 			break;
+// 		default:
+// 			pgts->out_cmd = 0;
+// 			break;
+// 	}
+
+// 	// # output guitrns command
+// 	if (pgts->out_cmd) {
+// 		guitrns_update_cmd_on(pgts);
+// 	}
+// 	else {
+// 		guitrns_update_cmd_off(pgts);
+// 	}
+// }

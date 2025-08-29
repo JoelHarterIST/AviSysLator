@@ -28,7 +28,9 @@ LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 EXTS = ./main/src/main_ext.h
 EXTS += ./lib/gncmath/src/gncmath.h
 EXTS += ./guidance/guitrns/src/guitrns_ext.h
+EXTS += ./guidance/guitrns/src/guitrns_int.h
 EXTS += ./plant/ptrns/src/ptrns_ext.h
+EXTS += ./plant/ptrns/src/ptrns_int.h
 
 .SUFFIXES: .c .o
 
