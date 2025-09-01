@@ -2,14 +2,20 @@ title: symbol map
 description: This is auto generated symbol map of Avisyslator GNC Prototype.
 mark_address: 0x00013060
 symbols:
--   name: mp.dt
-    address: 0x00013030
-    type: double
 -   name: mp.num_of_loop
-    address: 0x00013038
+    address: 0x00013030
     type: int32_t
--   name: ms.t
+-   name: ms.sim_slot
     address: 0x00013040
+    type: int32_t
+-   name: ms.sim_time
+    address: 0x00013048
+    type: double
+-   name: nav_time_s
+    address: 0x00013058
+    type: double
+-   name: mission_time_s
+    address: 0x00013018
     type: double
 -   name: gti.mode
     address: 0x000830A0
@@ -104,13 +110,13 @@ symbols:
 -   name: gtp.dt
     address: 0x00083188
     type: double
--   name: gts.status
+-   name: gts.mode
     address: 0x000831A0
     type: int32_t
--   name: gts.out_cmd
+-   name: gts.mode_peg
     address: 0x000831A4
     type: int32_t
--   name: gts.mode
+-   name: gts.status
     address: 0x000831A8
     type: int32_t
 -   name: gts.d_v_.x

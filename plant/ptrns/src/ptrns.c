@@ -176,8 +176,10 @@ void ptrns_output(ptrns_state_t* ppts, ptrns_output_t* ppto) {
 /// @param [out] ppts pointer to ptrns state
 void ptrns_update_init(ptrns_input_t* ppti, ptrns_state_t* ppts) {
 	// init input
+	// to be implemented
 
 	// init state
+	// to be implemented
 }
 
 /// @brief 回転プラントモデル : 更新 : ルンゲクッタ4次

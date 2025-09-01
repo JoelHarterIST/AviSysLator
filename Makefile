@@ -25,7 +25,7 @@ LIBS = -lgncmath
 
 LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
-EXTS = ./main/src/main_ext.h
+EXTS = ./main/src/main_int.h
 EXTS += ./lib/gncmath/src/gncmath.h
 EXTS += ./guidance/guitrns/src/guitrns_ext.h
 EXTS += ./guidance/guitrns/src/guitrns_int.h

@@ -63,10 +63,9 @@ typedef struct {
 
 // ## state
 typedef struct {
-	int32_t status;
-	int32_t out_cmd;
 	int32_t mode;
-	// int32_t mode_next;
+	int32_t mode_peg;
+	int32_t status;
 	vec3_t d_v_;
 	vec3_t u_y_;
 	double t_go;

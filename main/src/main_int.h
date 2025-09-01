@@ -1,9 +1,9 @@
-/// @file guitrns.h
-/// @brief functions and structures of guidance translation
+/// @file main_int.h
+/// @brief internals of main
 
 
-#ifndef __GUITRNS_H__
-#define __GUITRNS_H__
+#ifndef __MAIN_INT_H__
+#define __MAIN_INT_H__
 
 
 // # システムヘッダの取り込み
@@ -30,7 +30,16 @@
 
 
 // # typedef定義（intやcharといった基本型に対する型定義）
-// none
+// ## param
+typedef struct {
+	int32_t num_of_loop;
+} main_param_t;
+
+// ## state
+typedef struct {
+	int32_t sim_slot;
+	double sim_time;
+} main_state_t;
 
 
 // # enumタグ定義（typedefを同時に行う）
@@ -42,11 +51,14 @@
 
 
 // # extern変数宣言
-// none
+extern main_param_t mp;
+extern main_state_t ms;
+extern double nav_time_s; // [s]
+extern double mission_time_s; // [s]
 
 
 // # 関数プロトタイプ宣言
-void guitrns_main(int32_t slot_num);
+// none
 
 
 // # インライン関数

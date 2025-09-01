@@ -38,7 +38,7 @@
 #define	EXIT_NG	-1	/* Failing exit status.  0 >  */
 
 // ## SLOT TIME
-#define DT_OF_SLOT_S (0.01) // [s] 0.5ms
+#define DT_OF_SLOT_S (0.01) // [s] 10.0ms temprary
 // #define DT_OF_SLOT_S (0.0005) // [s] 0.5ms
 #define DT_OF_SLOT_US (500) // [us] 500us, 0.5ms
 #define NUM_OF_SLOT (20) // 10ms

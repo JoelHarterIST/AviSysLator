@@ -3,12 +3,8 @@ description: |
   This is test file of test case setting yaml.
 init: 
   settings: 
-    - variable: mp.dt
-      value: 0.01
     - variable: mp.num_of_loop
-      value: 25000
-    - variable: ms.t
-      value: 0.0
+      value: 25000 # x 10.0[ms] = 250.000[s]
     - variable: ptp.isp
       value: 350
     - variable: pts.pos_
@@ -21,11 +17,13 @@ init:
       value: -2046.201518, -1830.379092, 580.2079586
     - variable: pti.mode
       value: 2
+    - variable: gti.mode
+      value: 3
 std_out_log: 
   output_file: std_out_log_output.txt
   cycle: 100
   cyclic_log_variables: 
-    - gts.mode
+    - gts.mode_peg
     - gts.status
     - gts.t
     - gts.t_go
@@ -36,7 +34,7 @@ std_out_log:
     - pts.acl_.y
     - pts.acl_.z
   event_log: 
-    - variable: gts.mode
+    - variable: gts.mode_peg
       option: EQ
       threshold: 0
       monitor: 

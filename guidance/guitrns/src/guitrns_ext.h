@@ -23,8 +23,10 @@
 
 // # #defineマクロ
 #define GUITRNS_MODE_OFF (0)
-#define GUITRNS_MODE_INIT (1)
-#define GUITRNS_MODE_ON (2)
+#define GUITRNS_MODE_STAGE_1_INIT (1)
+#define GUITRNS_MODE_STAGE_1 (2)
+#define GUITRNS_MODE_STAGE_2_INIT (3)
+#define GUITRNS_MODE_STAGE_2 (4)
 
 
 // # #define関数マクロ
