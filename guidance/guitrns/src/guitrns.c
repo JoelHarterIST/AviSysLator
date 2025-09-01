@@ -80,7 +80,6 @@ void guitrns_switch_mode(int32_t mode_state);
 void guitrns_off(guitrns_input_t* pgti, guitrns_state_t* pgts, guitrns_output_t* pgto);
 void guitrns_input(ptrns_output_t* ppto, guitrns_input_t* pgti);
 void guitrns_output(guitrns_state_t* pgts, guitrns_output_t* pgto);
-// int guitrns_main_(guitrns_input_t* pgti, guitrns_state_t* pgts);
 void guitrns_update_peg(guitrns_input_t* pgti, guitrns_state_t* pgts);
 void guitrns_update_peg_init(guitrns_state_t* pgts);
 int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t* pgts);
@@ -216,23 +215,23 @@ void guitrns_update_peg(guitrns_input_t* pgti, guitrns_state_t* pgts) {
 			pgts->t = 0.0;
 			pgts->t_c = 0.0;
 			pgts->cyc_cnt = 0;
-			guitrns_update_peg_cmd_on(&gts);
+			guitrns_update_peg_cmd_on(pgts);
 			pgts->mode_peg = GUITRNS_MODE_PEG_WAIT; // set mode for next cycle
 			break;
 		case GUITRNS_MODE_PEG_UPDATE:
 			pgts->a_thrust = gtp.f_thrust/pgts->mass;
-			pgts->status = guitrns_update_peg_core(0, pgti->pos_, pgti->vel_, &gts);
+			pgts->status = guitrns_update_peg_core(0, pgti->pos_, pgti->vel_, pgts);
 			if (0 > pgts->status) {
 				// error handle future implementation
 			}
 			pgts->t_c = 0.0;
 			pgts->cyc_cnt = 0;
 			pgts->dlt_v_thrust_ = zeros_v3();
-			guitrns_update_peg_cmd_on(&gts);
+			guitrns_update_peg_cmd_on(pgts);
 			pgts->mode_peg = GUITRNS_MODE_PEG_WAIT; // set mode for next cycle
 			break;
 		case GUITRNS_MODE_PEG_WAIT:
-			guitrns_update_peg_cmd_on(&gts);
+			guitrns_update_peg_cmd_on(pgts);
 			pgts->cyc_cnt++;
 			if (gtp.cyc_wait <= pgts->cyc_cnt) {
 				if (gtp.t_go_min < (pgts->t_go - 1.0)) {
@@ -245,15 +244,15 @@ void guitrns_update_peg(guitrns_input_t* pgti, guitrns_state_t* pgts) {
 			break;
 		case GUITRNS_MODE_PEG_FINAL:
 			if (gtp.t_go_min >= pgts->t_c) {
-				guitrns_update_peg_cmd_on(&gts);
+				guitrns_update_peg_cmd_on(pgts);
 			}
 			else {
-				guitrns_update_peg_cmd_off(&gts);
+				guitrns_update_peg_cmd_off(pgts);
 				pgts->mode_peg = GUITRNS_MODE_PEG_OFF; // set mode for next cycle
 			}
 			break;
 		default: // including GUITRNS_MODE_PEG_OFF
-			guitrns_update_peg_cmd_off(&gts);
+			guitrns_update_peg_cmd_off(pgts);
 			break;
 	}
 }
