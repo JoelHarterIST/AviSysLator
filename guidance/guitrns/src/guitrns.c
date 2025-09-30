@@ -262,11 +262,11 @@ void guitrns_update_peg(guitrns_input_t* pgti, guitrns_state_t* pgts) {
 void guitrns_update_peg_init(guitrns_state_t* pgts) {
 	// # set guitrns parameters
 	// data source: https://github.com/istellartech/RocketSim/blob/master/bin/input/example-target_orbit.csv
-	double h_a_d = 5.00e5;  // [m] desired height at apogee
-	double h_p_d = 2.00e5;  // [m] desired height at perigee
-	double i_d = 45.0*DEG_RAD; // [rad] desired inclination
-	double o_d = 31.0*DEG_RAD;  // [rad] desired right ascension of ascending node
-	double w_d = 178.0*DEG_RAD; // [rad] desired argument of perigee
+	double h_a_d = 230.0e3;  // [m] desired height at apogee
+	double h_p_d = 229.999999e3;  // [m] desired height at perigee
+	double i_d = 42.2*DEG_RAD; // [rad] desired inclination
+	double o_d = 56.0*DEG_RAD;  // [rad] desired right ascension of ascending node
+	double w_d = 282.0*DEG_RAD; // [rad] desired argument of perigee
 	gtp.a_d = (h_a_d + h_p_d)/2.0 + A_E;
 	gtp.e_d = (h_a_d + A_E) / gtp.a_d - 1.0;
 	gtp.e_d_2_m1 = gtp.e_d*gtp.e_d - 1.0;
