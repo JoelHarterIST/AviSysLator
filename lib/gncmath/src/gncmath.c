@@ -201,7 +201,7 @@ double dot_v3_v3(vec3_t a, vec3_t b) {
 	return _ans;
 }
 
-/// @brief cross product of mat33 and mat33
+/// @brief cross product
 /// @param [in] vec3_t a
 /// @param [in] vec3_t b
 /// @return vec3_t a (cross product) b
@@ -216,14 +216,47 @@ vec3_t crs_v3_v3(vec3_t a, vec3_t b) {
 
 
 // ---------------------------------------------------------------------------
+// operation for mat32_t and vec2_t
+// ---------------------------------------------------------------------------
+
+/// @brief product mat32 and vec2
+/// @param [in] mat32_t m
+/// @param [in] vec2_t v
+/// @return vec3_t m (product) v
+vec3_t mult_m32_v2(mat32_t m, vec2_t v) {
+	vec3_t _ans;
+	_ans.x = m.a.x * v.x + m.b.x * v.y;
+	_ans.y = m.a.y * v.x + m.b.y * v.y;
+	_ans.z = m.a.z * v.x + m.b.z * v.y;
+
+	return _ans;
+}
+
+// ---------------------------------------------------------------------------
+// operation for mat23_t and vec3_t
+// ---------------------------------------------------------------------------
+
+/// @brief product mat23 and vec3
+/// @param [in] mat23_t m
+/// @param [in] vec3_t v
+/// @return vec2_t m (product) v
+vec2_t mult_m23_v3(mat23_t m, vec3_t v) {
+	vec2_t _ans;
+	_ans.x = m.a.x * v.x + m.b.x * v.y + m.c.x * v.z;
+	_ans.y = m.a.y * v.x + m.b.y * v.y + m.c.y * v.z;
+
+	return _ans;
+}
+
+// ---------------------------------------------------------------------------
 // operation for mat33_t and vec3_t
 // ---------------------------------------------------------------------------
 
-/// @brief dot product of mat33 and vec3
+/// @brief product mat33 and vec3
 /// @param [in] mat33_t m
 /// @param [in] vec3_t v
-/// @return vec3_t m (dot product) v
-vec3_t dot_m33_v3(mat33_t m, vec3_t v) {
+/// @return vec3_t m (product) v
+vec3_t mult_m33_v3(mat33_t m, vec3_t v) {
 	vec3_t _ans;
 	_ans.x = m.a.x * v.x + m.b.x * v.y + m.c.x * v.z;
 	_ans.y = m.a.y * v.x + m.b.y * v.y + m.c.y * v.z;
@@ -327,6 +360,41 @@ vec3_t dcm_to_euler321(mat33_t m, vec3_t v) {
 	return _ans;
 }
 
+/// @brief transpose of mat23
+/// @param [in] mat23_t s
+/// @return mat33_t trns(s)
+mat32_t trns_m23(mat23_t s) {
+	mat32_t _ans;
+
+	_ans.a.x = s.a.x;
+	_ans.b.x = s.a.y;
+
+	_ans.a.y = s.b.x;
+	_ans.b.y = s.b.y;
+
+	_ans.a.z = s.c.x;
+	_ans.b.z = s.c.y;
+
+	return _ans;
+}
+
+/// @brief transpose of mat32
+/// @param [in] mat32_t s
+/// @return mat33_t trns(s)
+mat23_t trns_m32(mat32_t s) {
+	mat23_t _ans;
+
+	_ans.a.x = s.a.x;
+	_ans.b.x = s.a.y;
+	_ans.c.x = s.a.z;
+
+	_ans.a.y = s.b.x;
+	_ans.b.y = s.b.y;
+	_ans.c.y = s.b.z;
+
+	return _ans;
+}
+
 /// @brief transpose of mat33
 /// @param [in] mat33_t s
 /// @return mat33_t trns(s)
@@ -382,10 +450,10 @@ mat33_t inv_m33(mat33_t s) {
 	return _ans;
 }
 
-/// @brief dot product of mat33 and mat33
+/// @brief hadamard product of mat33 and mat33
 /// @param [in] mat33_t s
 /// @param [in] mat33_t d
-/// @return mat33_t s (dot product) d
+/// @return mat33_t s (hadamard product) d
 mat33_t dot_m33_m33(mat33_t s, mat33_t d) {
 	mat33_t _ans;
 
@@ -483,7 +551,7 @@ double norm_q(quat_t q) {
 	return sqrt(_ans);
 }
 
-/// @brief normaliz quaternion
+/// @brief normalize quaternion
 /// @param [in] quat_t q
 /// @return quat_t q/norm(q)
 quat_t nmlz_q(quat_t q) {

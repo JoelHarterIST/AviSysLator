@@ -13,6 +13,14 @@ extern "C" {
 
 #define DBL_EPS (1E-30)
 
+/// \brief vector (x, y)
+///
+/// 
+typedef struct {
+	double x;
+	double y;
+} vec2_t;
+
 /// \brief vector (x, y, z)
 ///
 /// 
@@ -21,6 +29,23 @@ typedef struct {
 	double y;
 	double z;
 } vec3_t;
+
+/// \brief matrix (2 by 3)
+///
+/// 
+typedef struct {
+	vec2_t a;
+	vec2_t b;
+	vec2_t c;
+} mat23_t;
+
+/// \brief matrix (3 by 2)
+///
+/// 
+typedef struct {
+	vec3_t a;
+	vec3_t b;
+} mat32_t;
 
 /// \brief matrix (3 by 3)
 ///

@@ -32,7 +32,7 @@
 // # typedef定義（intやcharといった基本型に対する型定義）
 // ## abbreviations
 // delta -> dlt
-// epsiron -> eps
+// epsilon -> eps
 // gamma -> gmm
 // lambda -> lmd
 // theta -> tht

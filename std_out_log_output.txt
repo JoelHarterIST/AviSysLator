@@ -3,141 +3,141 @@ case file : test_case.yaml
 ---
 init start
 ---
-load file: /home/ymukuist/aviocode_main/development/avisyslator_gnc/proto/translation_3dof_A04/symbol_map.yaml
+load file: /home/harter/AvionicsCodeZERO/development/avisyslator_gnc/proto/translation_3dof_A04/symbol_map.yaml
 title: symbol map
-abs address mark: 0x000063fc239b1060
-map address mark: 0x0000000000013060
-abs address base: 0x000063fc2399e000
+abs address mark: 0x000055f2fcac1060
+map address mark: 0x0000000000014060
+abs address base: 0x000055f2fcaad000
 symbols:
-0	mp.num_of_loop	0x00013030	1
-1	ms.sim_slot	0x00013040	1
-2	ms.sim_time	0x00013048	2
-3	nav_time_s	0x00013058	2
-4	mission_time_s	0x00013018	2
-5	gti.mode	0x000830a0	1
-6	gti.pos_.x	0x000830a8	2
-7	gti.pos_.y	0x000830b0	2
-8	gti.pos_.z	0x000830b8	2
-9	gti.vel_.x	0x000830c0	2
-10	gti.vel_.y	0x000830c8	2
-11	gti.vel_.z	0x000830d0	2
-12	gto.mode	0x000830e0	1
-13	gto.a_thrust_.x	0x000830e8	2
-14	gto.a_thrust_.y	0x000830f0	2
-15	gto.a_thrust_.z	0x000830f8	2
-16	gtp.r_d	0x00083100	2
-17	gtp.v_d	0x00083108	2
-18	gtp.i_d	0x00083110	2
-19	gtp.gmm_d	0x00083118	2
-20	gtp.f_thrust	0x00083120	2
-21	gtp.mass_0	0x00083128	2
-22	gtp.mass_dot	0x00083130	2
-23	gtp.i_sp	0x00083138	2
-24	gtp.v_ex	0x00083140	2
-25	gtp.eps	0x00083148	2
-26	gtp.eps_r	0x00083150	2
-27	gtp.eps_v	0x00083158	2
-28	gtp.d_damp	0x00083160	2
-29	gtp.i_corr_min	0x00083168	1
-30	gtp.i_corr_max_init	0x0008316c	1
-31	gtp.i_corr_max_update	0x00083170	1
-32	gtp.i_pred_max	0x00083174	1
-33	gtp.t_go_min	0x00083178	2
-34	gtp.cyc_wait	0x00083180	1
-35	gtp.dt	0x00083188	2
-36	gts.mode	0x000831a0	1
-37	gts.mode_peg	0x000831a4	1
-38	gts.status	0x000831a8	1
-39	gts.d_v_.x	0x000831b0	2
-40	gts.d_v_.y	0x000831b8	2
-41	gts.d_v_.z	0x000831c0	2
-42	gts.u_y_.x	0x000831c8	2
-43	gts.u_y_.y	0x000831d0	2
-44	gts.u_y_.z	0x000831d8	2
-45	gts.t_go	0x000831e0	2
-46	gts.k_time	0x000831e8	2
-47	gts.lmd_.x	0x000831f0	2
-48	gts.lmd_.y	0x000831f8	2
-49	gts.lmd_.z	0x00083200	2
-50	gts.lmd_dot_.x	0x00083208	2
-51	gts.lmd_dot_.y	0x00083210	2
-52	gts.lmd_dot_.z	0x00083218	2
-53	gts.lmd_dot	0x00083220	2
-54	gts.v_p_.x	0x00083228	2
-55	gts.v_p_.y	0x00083230	2
-56	gts.v_p_.z	0x00083238	2
-57	gts.r_p_.x	0x00083240	2
-58	gts.r_p_.y	0x00083248	2
-59	gts.r_p_.z	0x00083250	2
-60	gts.r_p	0x00083258	2
-61	gts.r_d_.x	0x00083260	2
-62	gts.r_d_.y	0x00083268	2
-63	gts.r_d_.z	0x00083270	2
-64	gts.v_d_.x	0x00083278	2
-65	gts.v_d_.y	0x00083280	2
-66	gts.v_d_.z	0x00083288	2
-67	gts.mass	0x00083290	2
-68	gts.a_thrust	0x00083298	2
-69	gts.dlt_v_thrust_.x	0x000832a0	2
-70	gts.dlt_v_thrust_.y	0x000832a8	2
-71	gts.dlt_v_thrust_.z	0x000832b0	2
-72	gts.p_.x	0x000832b8	2
-73	gts.p_.y	0x000832c0	2
-74	gts.p_.z	0x000832c8	2
-75	gts.f_thrust_.x	0x000832d0	2
-76	gts.f_thrust_.y	0x000832d8	2
-77	gts.f_thrust_.z	0x000832e0	2
-78	gts.a_thrust_.x	0x000832e8	2
-79	gts.a_thrust_.y	0x000832f0	2
-80	gts.a_thrust_.z	0x000832f8	2
-81	gts.cyc_cnt	0x00083300	1
-82	gts.t	0x00083308	2
-83	gts.t_c	0x00083310	2
-84	pti.mode	0x00083320	1
-85	pti.acl_.x	0x00083328	2
-86	pti.acl_.y	0x00083330	2
-87	pti.acl_.z	0x00083338	2
-88	pto.mode	0x00083340	1
-89	pto.pos_.x	0x00083348	2
-90	pto.pos_.y	0x00083350	2
-91	pto.pos_.z	0x00083358	2
-92	pto.vel_.x	0x00083360	2
-93	pto.vel_.y	0x00083368	2
-94	pto.vel_.z	0x00083370	2
-95	ptp.isp	0x00083378	2
-96	pts.mode	0x00083380	1
-97	pts.pos_.x	0x00083388	2
-98	pts.pos_.y	0x00083390	2
-99	pts.pos_.z	0x00083398	2
-100	pts.vel_.x	0x000833a0	2
-101	pts.vel_.y	0x000833a8	2
-102	pts.vel_.z	0x000833b0	2
-103	pts.acl_.x	0x000833b8	2
-104	pts.acl_.y	0x000833c0	2
-105	pts.acl_.z	0x000833c8	2
-106	gti.pos_	0x000830a8	3
-107	gti.vel_	0x000830c0	3
-108	gto.a_thrust_	0x000830e8	3
-109	gts.d_v_	0x000831b0	3
-110	gts.u_y_	0x000831c8	3
-111	gts.lmd_	0x000831f0	3
-112	gts.lmd_dot_	0x00083208	3
-113	gts.v_p_	0x00083228	3
-114	gts.r_p_	0x00083240	3
-115	gts.r_d_	0x00083260	3
-116	gts.v_d_	0x00083278	3
-117	gts.dlt_v_thrust_	0x000832a0	3
-118	gts.p_	0x000832b8	3
-119	gts.f_thrust_	0x000832d0	3
-120	gts.a_thrust_	0x000832e8	3
-121	pti.acl_	0x00083328	3
-122	pto.pos_	0x00083348	3
-123	pto.vel_	0x00083360	3
-124	pts.pos_	0x00083388	3
-125	pts.vel_	0x000833a0	3
-126	pts.acl_	0x000833b8	3
+0	mp.num_of_loop	0x00014030	1
+1	ms.sim_slot	0x00014040	1
+2	ms.sim_time	0x00014048	2
+3	nav_time_s	0x00014058	2
+4	mission_time_s	0x00014018	2
+5	gti.mode	0x000840a0	1
+6	gti.pos_.x	0x000840a8	2
+7	gti.pos_.y	0x000840b0	2
+8	gti.pos_.z	0x000840b8	2
+9	gti.vel_.x	0x000840c0	2
+10	gti.vel_.y	0x000840c8	2
+11	gti.vel_.z	0x000840d0	2
+12	gto.mode	0x000840e0	1
+13	gto.a_thrust_.x	0x000840e8	2
+14	gto.a_thrust_.y	0x000840f0	2
+15	gto.a_thrust_.z	0x000840f8	2
+16	gtp.r_d	0x00084100	2
+17	gtp.v_d	0x00084108	2
+18	gtp.i_d	0x00084110	2
+19	gtp.gmm_d	0x00084118	2
+20	gtp.f_thrust	0x00084120	2
+21	gtp.mass_0	0x00084128	2
+22	gtp.mass_dot	0x00084130	2
+23	gtp.i_sp	0x00084138	2
+24	gtp.v_ex	0x00084140	2
+25	gtp.eps	0x00084148	2
+26	gtp.eps_r	0x00084150	2
+27	gtp.eps_v	0x00084158	2
+28	gtp.d_damp	0x00084160	2
+29	gtp.i_corr_min	0x00084168	1
+30	gtp.i_corr_max_init	0x0008416c	1
+31	gtp.i_corr_max_update	0x00084170	1
+32	gtp.i_pred_max	0x00084174	1
+33	gtp.t_go_min	0x00084178	2
+34	gtp.cyc_wait	0x00084180	1
+35	gtp.dt	0x00084188	2
+36	gts.mode	0x000841a0	1
+37	gts.mode_peg	0x000841a4	1
+38	gts.status	0x000841a8	1
+39	gts.d_v_.x	0x000841b0	2
+40	gts.d_v_.y	0x000841b8	2
+41	gts.d_v_.z	0x000841c0	2
+42	gts.u_y_.x	0x000841c8	2
+43	gts.u_y_.y	0x000841d0	2
+44	gts.u_y_.z	0x000841d8	2
+45	gts.t_go	0x000841e0	2
+46	gts.k_time	0x000841e8	2
+47	gts.lmd_.x	0x000841f0	2
+48	gts.lmd_.y	0x000841f8	2
+49	gts.lmd_.z	0x00084200	2
+50	gts.lmd_dot_.x	0x00084208	2
+51	gts.lmd_dot_.y	0x00084210	2
+52	gts.lmd_dot_.z	0x00084218	2
+53	gts.lmd_dot	0x00084220	2
+54	gts.v_p_.x	0x00084228	2
+55	gts.v_p_.y	0x00084230	2
+56	gts.v_p_.z	0x00084238	2
+57	gts.r_p_.x	0x00084240	2
+58	gts.r_p_.y	0x00084248	2
+59	gts.r_p_.z	0x00084250	2
+60	gts.r_p	0x00084258	2
+61	gts.r_d_.x	0x00084260	2
+62	gts.r_d_.y	0x00084268	2
+63	gts.r_d_.z	0x00084270	2
+64	gts.v_d_.x	0x00084278	2
+65	gts.v_d_.y	0x00084280	2
+66	gts.v_d_.z	0x00084288	2
+67	gts.mass	0x00084290	2
+68	gts.a_thrust	0x00084298	2
+69	gts.dlt_v_thrust_.x	0x000842a0	2
+70	gts.dlt_v_thrust_.y	0x000842a8	2
+71	gts.dlt_v_thrust_.z	0x000842b0	2
+72	gts.p_.x	0x000842b8	2
+73	gts.p_.y	0x000842c0	2
+74	gts.p_.z	0x000842c8	2
+75	gts.f_thrust_.x	0x000842d0	2
+76	gts.f_thrust_.y	0x000842d8	2
+77	gts.f_thrust_.z	0x000842e0	2
+78	gts.a_thrust_.x	0x000842e8	2
+79	gts.a_thrust_.y	0x000842f0	2
+80	gts.a_thrust_.z	0x000842f8	2
+81	gts.cyc_cnt	0x00084300	1
+82	gts.t	0x00084308	2
+83	gts.t_c	0x00084310	2
+84	pti.mode	0x00084320	1
+85	pti.acl_.x	0x00084328	2
+86	pti.acl_.y	0x00084330	2
+87	pti.acl_.z	0x00084338	2
+88	pto.mode	0x00084340	1
+89	pto.pos_.x	0x00084348	2
+90	pto.pos_.y	0x00084350	2
+91	pto.pos_.z	0x00084358	2
+92	pto.vel_.x	0x00084360	2
+93	pto.vel_.y	0x00084368	2
+94	pto.vel_.z	0x00084370	2
+95	ptp.isp	0x00084378	2
+96	pts.mode	0x00084380	1
+97	pts.pos_.x	0x00084388	2
+98	pts.pos_.y	0x00084390	2
+99	pts.pos_.z	0x00084398	2
+100	pts.vel_.x	0x000843a0	2
+101	pts.vel_.y	0x000843a8	2
+102	pts.vel_.z	0x000843b0	2
+103	pts.acl_.x	0x000843b8	2
+104	pts.acl_.y	0x000843c0	2
+105	pts.acl_.z	0x000843c8	2
+106	gti.pos_	0x000840a8	3
+107	gti.vel_	0x000840c0	3
+108	gto.a_thrust_	0x000840e8	3
+109	gts.d_v_	0x000841b0	3
+110	gts.u_y_	0x000841c8	3
+111	gts.lmd_	0x000841f0	3
+112	gts.lmd_dot_	0x00084208	3
+113	gts.v_p_	0x00084228	3
+114	gts.r_p_	0x00084240	3
+115	gts.r_d_	0x00084260	3
+116	gts.v_d_	0x00084278	3
+117	gts.dlt_v_thrust_	0x000842a0	3
+118	gts.p_	0x000842b8	3
+119	gts.f_thrust_	0x000842d0	3
+120	gts.a_thrust_	0x000842e8	3
+121	pti.acl_	0x00084328	3
+122	pto.pos_	0x00084348	3
+123	pto.vel_	0x00084360	3
+124	pts.pos_	0x00084388	3
+125	pts.vel_	0x000843a0	3
+126	pts.acl_	0x000843b8	3
 ---
-load file: /home/ymukuist/aviocode_main/development/avisyslator_gnc/proto/translation_3dof_A04/test_case.yaml
+load file: /home/harter/AvionicsCodeZERO/development/avisyslator_gnc/proto/translation_3dof_A04/test_case.yaml
 title: test case setting yaml
 init:setting
 0	mp.num_of_loop	25000
@@ -182,41 +182,41 @@ init parameters and states
 ---
 create time series log data
 time series log data:
-pts.pos_.x	000063fc23a21388	2	000063fc239b10d8
-pts.pos_.y	000063fc23a21390	2	000063fc239b1130
-pts.pos_.z	000063fc23a21398	2	000063fc239b1188
-pts.vel_.x	000063fc23a213a0	2	000063fc239b11e0
-pts.vel_.y	000063fc23a213a8	2	000063fc239b1238
-pts.vel_.z	000063fc23a213b0	2	000063fc239b1290
-gts.f_thrust_.x	000063fc23a212d0	2	000063fc239b12e8
-gts.f_thrust_.y	000063fc23a212d8	2	000063fc239b1340
-gts.f_thrust_.z	000063fc23a212e0	2	0000000000000000
+pts.pos_.x	000055f2fcb31388	2	000055f2fcac10d8
+pts.pos_.y	000055f2fcb31390	2	000055f2fcac1130
+pts.pos_.z	000055f2fcb31398	2	000055f2fcac1188
+pts.vel_.x	000055f2fcb313a0	2	000055f2fcac11e0
+pts.vel_.y	000055f2fcb313a8	2	000055f2fcac1238
+pts.vel_.z	000055f2fcb313b0	2	000055f2fcac1290
+gts.f_thrust_.x	000055f2fcb312d0	2	000055f2fcac12e8
+gts.f_thrust_.y	000055f2fcb312d8	2	000055f2fcac1340
+gts.f_thrust_.z	000055f2fcb312e0	2	0000000000000000
 ---
 create std out log data
 std out log data:
-gts.mode_peg	000063fc23a211a4	1	000063fc239b68d8
-gts.status	000063fc23a211a8	1	000063fc239b6930
-gts.t	000063fc23a21308	2	000063fc239b6988
-gts.t_go	000063fc23a211e0	2	000063fc239b69e0
-gts.mass	000063fc23a21290	2	000063fc239b6a38
-gts.cyc_cnt	000063fc23a21300	1	000063fc239b6a90
-gts.a_thrust	000063fc23a21298	2	000063fc239b6ae8
-pts.acl_.x	000063fc23a213b8	2	000063fc239b6b40
-pts.acl_.y	000063fc23a213c0	2	000063fc239b6b98
-pts.acl_.z	000063fc23a213c8	2	0000000000000000
+gts.mode_peg	000055f2fcb311a4	1	000055f2fcac68d8
+gts.status	000055f2fcb311a8	1	000055f2fcac6930
+gts.t	000055f2fcb31308	2	000055f2fcac6988
+gts.t_go	000055f2fcb311e0	2	000055f2fcac69e0
+gts.mass	000055f2fcb31290	2	000055f2fcac6a38
+gts.cyc_cnt	000055f2fcb31300	1	000055f2fcac6a90
+gts.a_thrust	000055f2fcb31298	2	000055f2fcac6ae8
+pts.acl_.x	000055f2fcb313b8	2	000055f2fcac6b40
+pts.acl_.y	000055f2fcb313c0	2	000055f2fcac6b98
+pts.acl_.z	000055f2fcb313c8	2	0000000000000000
 ---
 create event log data
 event log data:
-gts.mode_peg	000063fc23a211a4	1	6	0.000000	0000000000000000
-	pts.pos_.x	000063fc23a21388	2	000063fc239bc148
-	pts.pos_.y	000063fc23a21390	2	000063fc239bc1a0
-	pts.pos_.z	000063fc23a21398	2	000063fc239bc1f8
-	pts.vel_.x	000063fc23a213a0	2	000063fc239bc250
-	pts.vel_.y	000063fc23a213a8	2	000063fc239bc2a8
-	pts.vel_.z	000063fc23a213b0	2	000063fc239bc300
-	gts.f_thrust_.x	000063fc23a212d0	2	000063fc239bc358
-	gts.f_thrust_.y	000063fc23a212d8	2	000063fc239bc3b0
-	gts.f_thrust_.z	000063fc23a212e0	2	0000000000000000
+gts.mode_peg	000055f2fcb311a4	1	6	0.000000	0000000000000000
+	pts.pos_.x	000055f2fcb31388	2	000055f2fcacc148
+	pts.pos_.y	000055f2fcb31390	2	000055f2fcacc1a0
+	pts.pos_.z	000055f2fcb31398	2	000055f2fcacc1f8
+	pts.vel_.x	000055f2fcb313a0	2	000055f2fcacc250
+	pts.vel_.y	000055f2fcb313a8	2	000055f2fcacc2a8
+	pts.vel_.z	000055f2fcb313b0	2	000055f2fcacc300
+	gts.f_thrust_.x	000055f2fcb312d0	2	000055f2fcacc358
+	gts.f_thrust_.y	000055f2fcb312d8	2	000055f2fcacc3b0
+	gts.f_thrust_.z	000055f2fcb312e0	2	0000000000000000
 ---
 init end
 ---
