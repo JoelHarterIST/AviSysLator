@@ -41,8 +41,14 @@
 typedef struct {
 	double r_d;
 	double v_d;
-	double i_d;
-	double gmm_d;
+	double a_d;  // [m] desired semi-major axis
+	double e_d;  // [1] desired eccentricity
+	// double i_d;
+	// double o_d;  // [rad] desired right ascension of ascending node
+	// double w_d;  // [rad] desired argument of perigee
+	// double gmm_d;
+	double e_d_2_m1; // [1] e_d^2 - 1
+	mat32_t orbitplane2eci; // transformation from orbit plane cartesian coords to ECI coords
 	double f_thrust;
 	double mass_0;
 	double mass_dot;
@@ -67,7 +73,7 @@ typedef struct {
 	int32_t mode_peg;
 	int32_t status;
 	vec3_t d_v_;
-	vec3_t u_y_;
+	// vec3_t u_y_;
 	double t_go;
 	double k_time;
 	vec3_t lmd_;

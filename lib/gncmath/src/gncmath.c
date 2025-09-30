@@ -10,6 +10,57 @@
 
 
 // ---------------------------------------------------------------------------
+// operation for vec2_t
+// ---------------------------------------------------------------------------
+
+/// @brief return zeros vec2
+/// @return vec2_t [0.0, 0.0]
+vec2_t zeros_v2(void) {
+	vec2_t _ans;
+	_ans.x = 0.0;
+	_ans.y = 0.0;
+
+	return _ans;
+}
+
+/// @brief product of scalar and vec2
+/// @param [in] double s
+/// @param [in] vec2_t v
+/// @return vec2_t s (scalar product) v
+vec2_t scl_v2(double s, vec2_t v) {
+	vec2_t _ans;
+	_ans.x = s*v.x;
+	_ans.y = s*v.y;
+
+	return _ans;
+}
+
+/// @brief norm of vec2
+/// @param [in] vec2_t v
+/// @return double sqrt(v.x^2 + v.y^2)
+double norm_v2(vec2_t v) {
+	double _ans = v.x*v.x + v.y*v.y;
+
+	return sqrt(_ans);
+}
+
+/// @brief normaliz vec2
+/// @param [in] vec2_t v
+/// @return vec2_t v/norm(v)
+vec2_t nmlz_v2(vec2_t v) {
+	double  _r = norm_v2(v);
+	vec2_t _ans;
+
+	if (DBL_EPS > _r)  return v;
+
+	_ans.x = v.x / _r;
+	_ans.y = v.y / _r;
+
+	return _ans;
+}
+
+
+// ---------------------------------------------------------------------------
 // operation for vec3_t
 // ---------------------------------------------------------------------------
 
@@ -216,8 +267,55 @@ vec3_t crs_v3_v3(vec3_t a, vec3_t b) {
 
 
 // ---------------------------------------------------------------------------
-// operation for mat32_t and vec2_t
+// operation for mat32_t and mat_32_t with vec2_t and vec3_t
 // ---------------------------------------------------------------------------
+
+/// @brief transpose of mat23
+/// @param [in] mat23_t s
+/// @return mat33_t trns(s)
+mat32_t trns_m23(mat23_t s) {
+	mat32_t _ans;
+
+	_ans.a.x = s.a.x;
+	_ans.b.x = s.a.y;
+
+	_ans.a.y = s.b.x;
+	_ans.b.y = s.b.y;
+
+	_ans.a.z = s.c.x;
+	_ans.b.z = s.c.y;
+
+	return _ans;
+}
+
+/// @brief transpose of mat32
+/// @param [in] mat32_t s
+/// @return mat33_t trns(s)
+mat23_t trns_m32(mat32_t s) {
+	mat23_t _ans;
+
+	_ans.a.x = s.a.x;
+	_ans.b.x = s.a.y;
+	_ans.c.x = s.a.z;
+
+	_ans.a.y = s.b.x;
+	_ans.b.y = s.b.y;
+	_ans.c.y = s.b.z;
+
+	return _ans;
+}
+
+/// @brief product mat23 and vec3
+/// @param [in] mat23_t m
+/// @param [in] vec3_t v
+/// @return vec2_t m (product) v
+vec2_t mult_m23_v3(mat23_t m, vec3_t v) {
+	vec2_t _ans;
+	_ans.x = m.a.x * v.x + m.b.x * v.y + m.c.x * v.z;
+	_ans.y = m.a.y * v.x + m.b.y * v.y + m.c.y * v.z;
+
+	return _ans;
+}
 
 /// @brief product mat32 and vec2
 /// @param [in] mat32_t m
@@ -228,22 +326,6 @@ vec3_t mult_m32_v2(mat32_t m, vec2_t v) {
 	_ans.x = m.a.x * v.x + m.b.x * v.y;
 	_ans.y = m.a.y * v.x + m.b.y * v.y;
 	_ans.z = m.a.z * v.x + m.b.z * v.y;
-
-	return _ans;
-}
-
-// ---------------------------------------------------------------------------
-// operation for mat23_t and vec3_t
-// ---------------------------------------------------------------------------
-
-/// @brief product mat23 and vec3
-/// @param [in] mat23_t m
-/// @param [in] vec3_t v
-/// @return vec2_t m (product) v
-vec2_t mult_m23_v3(mat23_t m, vec3_t v) {
-	vec2_t _ans;
-	_ans.x = m.a.x * v.x + m.b.x * v.y + m.c.x * v.z;
-	_ans.y = m.a.y * v.x + m.b.y * v.y + m.c.y * v.z;
 
 	return _ans;
 }
@@ -356,41 +438,6 @@ vec3_t dcm_to_euler321(mat33_t m, vec3_t v) {
 		_ans.x = atan2(m.c.y, m.c.z);
 		_ans.z = atan2(m.b.x, m.a.x);
 	}
-
-	return _ans;
-}
-
-/// @brief transpose of mat23
-/// @param [in] mat23_t s
-/// @return mat33_t trns(s)
-mat32_t trns_m23(mat23_t s) {
-	mat32_t _ans;
-
-	_ans.a.x = s.a.x;
-	_ans.b.x = s.a.y;
-
-	_ans.a.y = s.b.x;
-	_ans.b.y = s.b.y;
-
-	_ans.a.z = s.c.x;
-	_ans.b.z = s.c.y;
-
-	return _ans;
-}
-
-/// @brief transpose of mat32
-/// @param [in] mat32_t s
-/// @return mat33_t trns(s)
-mat23_t trns_m32(mat32_t s) {
-	mat23_t _ans;
-
-	_ans.a.x = s.a.x;
-	_ans.b.x = s.a.y;
-	_ans.c.x = s.a.z;
-
-	_ans.a.y = s.b.x;
-	_ans.b.y = s.b.y;
-	_ans.c.y = s.b.z;
 
 	return _ans;
 }

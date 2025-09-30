@@ -61,6 +61,7 @@
 // ## NATURE CONSTANTS
 #define MU_E (3.986004418E+14) // [m^3 s^-2]
 #define G_E (9.80665) // [m/s^2]
+#define A_E (6378137.0) // [m]
 
 
 // # #define関数マクロ

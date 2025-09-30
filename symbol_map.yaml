@@ -1,385 +1,400 @@
 title: symbol map
 description: This is auto generated symbol map of Avisyslator GNC Prototype.
-mark_address: 0x00014060
+mark_address: 0x00013060
 symbols:
 -   name: mp.num_of_loop
-    address: 0x00014030
+    address: 0x00013030
     type: int32_t
 -   name: ms.sim_slot
-    address: 0x00014040
+    address: 0x00013040
     type: int32_t
 -   name: ms.sim_time
-    address: 0x00014048
+    address: 0x00013048
     type: double
 -   name: nav_time_s
-    address: 0x00014058
+    address: 0x00013058
     type: double
 -   name: mission_time_s
-    address: 0x00014018
+    address: 0x00013018
     type: double
 -   name: gti.mode
-    address: 0x000840A0
+    address: 0x000830A0
     type: int32_t
 -   name: gti.pos_.x
-    address: 0x000840A8
+    address: 0x000830A8
     type: double
 -   name: gti.pos_.y
-    address: 0x000840B0
+    address: 0x000830B0
     type: double
 -   name: gti.pos_.z
-    address: 0x000840B8
+    address: 0x000830B8
     type: double
 -   name: gti.vel_.x
-    address: 0x000840C0
+    address: 0x000830C0
     type: double
 -   name: gti.vel_.y
-    address: 0x000840C8
+    address: 0x000830C8
     type: double
 -   name: gti.vel_.z
-    address: 0x000840D0
+    address: 0x000830D0
     type: double
 -   name: gto.mode
-    address: 0x000840E0
+    address: 0x000830E0
     type: int32_t
 -   name: gto.a_thrust_.x
-    address: 0x000840E8
+    address: 0x000830E8
     type: double
 -   name: gto.a_thrust_.y
-    address: 0x000840F0
+    address: 0x000830F0
     type: double
 -   name: gto.a_thrust_.z
-    address: 0x000840F8
+    address: 0x000830F8
     type: double
 -   name: gtp.r_d
-    address: 0x00084100
+    address: 0x00083100
     type: double
 -   name: gtp.v_d
-    address: 0x00084108
+    address: 0x00083108
     type: double
--   name: gtp.i_d
-    address: 0x00084110
+-   name: gtp.a_d
+    address: 0x00083110
     type: double
--   name: gtp.gmm_d
-    address: 0x00084118
+-   name: gtp.e_d
+    address: 0x00083118
+    type: double
+-   name: gtp.e_d_2_m1
+    address: 0x00083120
+    type: double
+-   name: gtp.orbitplane2eci.a.x
+    address: 0x00083128
+    type: double
+-   name: gtp.orbitplane2eci.a.y
+    address: 0x00083130
+    type: double
+-   name: gtp.orbitplane2eci.a.z
+    address: 0x00083138
+    type: double
+-   name: gtp.orbitplane2eci.b.x
+    address: 0x00083140
+    type: double
+-   name: gtp.orbitplane2eci.b.y
+    address: 0x00083148
+    type: double
+-   name: gtp.orbitplane2eci.b.z
+    address: 0x00083150
     type: double
 -   name: gtp.f_thrust
-    address: 0x00084120
+    address: 0x00083158
     type: double
 -   name: gtp.mass_0
-    address: 0x00084128
+    address: 0x00083160
     type: double
 -   name: gtp.mass_dot
-    address: 0x00084130
+    address: 0x00083168
     type: double
 -   name: gtp.i_sp
-    address: 0x00084138
+    address: 0x00083170
     type: double
 -   name: gtp.v_ex
-    address: 0x00084140
+    address: 0x00083178
     type: double
 -   name: gtp.eps
-    address: 0x00084148
+    address: 0x00083180
     type: double
 -   name: gtp.eps_r
-    address: 0x00084150
+    address: 0x00083188
     type: double
 -   name: gtp.eps_v
-    address: 0x00084158
+    address: 0x00083190
     type: double
 -   name: gtp.d_damp
-    address: 0x00084160
+    address: 0x00083198
     type: double
 -   name: gtp.i_corr_min
-    address: 0x00084168
+    address: 0x000831A0
     type: int32_t
 -   name: gtp.i_corr_max_init
-    address: 0x0008416C
+    address: 0x000831A4
     type: int32_t
 -   name: gtp.i_corr_max_update
-    address: 0x00084170
+    address: 0x000831A8
     type: int32_t
 -   name: gtp.i_pred_max
-    address: 0x00084174
+    address: 0x000831AC
     type: int32_t
 -   name: gtp.t_go_min
-    address: 0x00084178
+    address: 0x000831B0
     type: double
 -   name: gtp.cyc_wait
-    address: 0x00084180
+    address: 0x000831B8
     type: int32_t
 -   name: gtp.dt
-    address: 0x00084188
+    address: 0x000831C0
     type: double
 -   name: gts.mode
-    address: 0x000841A0
+    address: 0x000831E0
     type: int32_t
 -   name: gts.mode_peg
-    address: 0x000841A4
+    address: 0x000831E4
     type: int32_t
 -   name: gts.status
-    address: 0x000841A8
+    address: 0x000831E8
     type: int32_t
 -   name: gts.d_v_.x
-    address: 0x000841B0
+    address: 0x000831F0
     type: double
 -   name: gts.d_v_.y
-    address: 0x000841B8
+    address: 0x000831F8
     type: double
 -   name: gts.d_v_.z
-    address: 0x000841C0
-    type: double
--   name: gts.u_y_.x
-    address: 0x000841C8
-    type: double
--   name: gts.u_y_.y
-    address: 0x000841D0
-    type: double
--   name: gts.u_y_.z
-    address: 0x000841D8
+    address: 0x00083200
     type: double
 -   name: gts.t_go
-    address: 0x000841E0
+    address: 0x00083208
     type: double
 -   name: gts.k_time
-    address: 0x000841E8
+    address: 0x00083210
     type: double
 -   name: gts.lmd_.x
-    address: 0x000841F0
+    address: 0x00083218
     type: double
 -   name: gts.lmd_.y
-    address: 0x000841F8
+    address: 0x00083220
     type: double
 -   name: gts.lmd_.z
-    address: 0x00084200
+    address: 0x00083228
     type: double
 -   name: gts.lmd_dot_.x
-    address: 0x00084208
+    address: 0x00083230
     type: double
 -   name: gts.lmd_dot_.y
-    address: 0x00084210
+    address: 0x00083238
     type: double
 -   name: gts.lmd_dot_.z
-    address: 0x00084218
+    address: 0x00083240
     type: double
 -   name: gts.lmd_dot
-    address: 0x00084220
+    address: 0x00083248
     type: double
 -   name: gts.v_p_.x
-    address: 0x00084228
+    address: 0x00083250
     type: double
 -   name: gts.v_p_.y
-    address: 0x00084230
+    address: 0x00083258
     type: double
 -   name: gts.v_p_.z
-    address: 0x00084238
+    address: 0x00083260
     type: double
 -   name: gts.r_p_.x
-    address: 0x00084240
+    address: 0x00083268
     type: double
 -   name: gts.r_p_.y
-    address: 0x00084248
+    address: 0x00083270
     type: double
 -   name: gts.r_p_.z
-    address: 0x00084250
+    address: 0x00083278
     type: double
 -   name: gts.r_p
-    address: 0x00084258
+    address: 0x00083280
     type: double
 -   name: gts.r_d_.x
-    address: 0x00084260
+    address: 0x00083288
     type: double
 -   name: gts.r_d_.y
-    address: 0x00084268
+    address: 0x00083290
     type: double
 -   name: gts.r_d_.z
-    address: 0x00084270
+    address: 0x00083298
     type: double
 -   name: gts.v_d_.x
-    address: 0x00084278
+    address: 0x000832A0
     type: double
 -   name: gts.v_d_.y
-    address: 0x00084280
+    address: 0x000832A8
     type: double
 -   name: gts.v_d_.z
-    address: 0x00084288
+    address: 0x000832B0
     type: double
 -   name: gts.mass
-    address: 0x00084290
+    address: 0x000832B8
     type: double
 -   name: gts.a_thrust
-    address: 0x00084298
+    address: 0x000832C0
     type: double
 -   name: gts.dlt_v_thrust_.x
-    address: 0x000842A0
+    address: 0x000832C8
     type: double
 -   name: gts.dlt_v_thrust_.y
-    address: 0x000842A8
+    address: 0x000832D0
     type: double
 -   name: gts.dlt_v_thrust_.z
-    address: 0x000842B0
+    address: 0x000832D8
     type: double
 -   name: gts.p_.x
-    address: 0x000842B8
+    address: 0x000832E0
     type: double
 -   name: gts.p_.y
-    address: 0x000842C0
+    address: 0x000832E8
     type: double
 -   name: gts.p_.z
-    address: 0x000842C8
+    address: 0x000832F0
     type: double
 -   name: gts.f_thrust_.x
-    address: 0x000842D0
+    address: 0x000832F8
     type: double
 -   name: gts.f_thrust_.y
-    address: 0x000842D8
+    address: 0x00083300
     type: double
 -   name: gts.f_thrust_.z
-    address: 0x000842E0
+    address: 0x00083308
     type: double
 -   name: gts.a_thrust_.x
-    address: 0x000842E8
+    address: 0x00083310
     type: double
 -   name: gts.a_thrust_.y
-    address: 0x000842F0
+    address: 0x00083318
     type: double
 -   name: gts.a_thrust_.z
-    address: 0x000842F8
+    address: 0x00083320
     type: double
 -   name: gts.cyc_cnt
-    address: 0x00084300
+    address: 0x00083328
     type: int32_t
 -   name: gts.t
-    address: 0x00084308
+    address: 0x00083330
     type: double
 -   name: gts.t_c
-    address: 0x00084310
+    address: 0x00083338
     type: double
 -   name: pti.mode
-    address: 0x00084320
+    address: 0x00083340
     type: int32_t
 -   name: pti.acl_.x
-    address: 0x00084328
+    address: 0x00083348
     type: double
 -   name: pti.acl_.y
-    address: 0x00084330
+    address: 0x00083350
     type: double
 -   name: pti.acl_.z
-    address: 0x00084338
+    address: 0x00083358
     type: double
 -   name: pto.mode
-    address: 0x00084340
+    address: 0x00083360
     type: int32_t
 -   name: pto.pos_.x
-    address: 0x00084348
+    address: 0x00083368
     type: double
 -   name: pto.pos_.y
-    address: 0x00084350
+    address: 0x00083370
     type: double
 -   name: pto.pos_.z
-    address: 0x00084358
+    address: 0x00083378
     type: double
 -   name: pto.vel_.x
-    address: 0x00084360
+    address: 0x00083380
     type: double
 -   name: pto.vel_.y
-    address: 0x00084368
+    address: 0x00083388
     type: double
 -   name: pto.vel_.z
-    address: 0x00084370
+    address: 0x00083390
     type: double
 -   name: ptp.isp
-    address: 0x00084378
+    address: 0x00083398
     type: double
 -   name: pts.mode
-    address: 0x00084380
+    address: 0x000833A0
     type: int32_t
 -   name: pts.pos_.x
-    address: 0x00084388
+    address: 0x000833A8
     type: double
 -   name: pts.pos_.y
-    address: 0x00084390
+    address: 0x000833B0
     type: double
 -   name: pts.pos_.z
-    address: 0x00084398
+    address: 0x000833B8
     type: double
 -   name: pts.vel_.x
-    address: 0x000843A0
+    address: 0x000833C0
     type: double
 -   name: pts.vel_.y
-    address: 0x000843A8
+    address: 0x000833C8
     type: double
 -   name: pts.vel_.z
-    address: 0x000843B0
+    address: 0x000833D0
     type: double
 -   name: pts.acl_.x
-    address: 0x000843B8
+    address: 0x000833D8
     type: double
 -   name: pts.acl_.y
-    address: 0x000843C0
+    address: 0x000833E0
     type: double
 -   name: pts.acl_.z
-    address: 0x000843C8
+    address: 0x000833E8
     type: double
 -   name: gti.pos_
-    address: 0x000840A8
+    address: 0x000830A8
     type: vec3_t
 -   name: gti.vel_
-    address: 0x000840C0
+    address: 0x000830C0
     type: vec3_t
 -   name: gto.a_thrust_
-    address: 0x000840E8
+    address: 0x000830E8
+    type: vec3_t
+-   name: gtp.orbitplane2eci.a
+    address: 0x00083128
+    type: vec3_t
+-   name: gtp.orbitplane2eci.b
+    address: 0x00083140
     type: vec3_t
 -   name: gts.d_v_
-    address: 0x000841B0
-    type: vec3_t
--   name: gts.u_y_
-    address: 0x000841C8
+    address: 0x000831F0
     type: vec3_t
 -   name: gts.lmd_
-    address: 0x000841F0
+    address: 0x00083218
     type: vec3_t
 -   name: gts.lmd_dot_
-    address: 0x00084208
+    address: 0x00083230
     type: vec3_t
 -   name: gts.v_p_
-    address: 0x00084228
+    address: 0x00083250
     type: vec3_t
 -   name: gts.r_p_
-    address: 0x00084240
+    address: 0x00083268
     type: vec3_t
 -   name: gts.r_d_
-    address: 0x00084260
+    address: 0x00083288
     type: vec3_t
 -   name: gts.v_d_
-    address: 0x00084278
+    address: 0x000832A0
     type: vec3_t
 -   name: gts.dlt_v_thrust_
-    address: 0x000842A0
+    address: 0x000832C8
     type: vec3_t
 -   name: gts.p_
-    address: 0x000842B8
+    address: 0x000832E0
     type: vec3_t
 -   name: gts.f_thrust_
-    address: 0x000842D0
+    address: 0x000832F8
     type: vec3_t
 -   name: gts.a_thrust_
-    address: 0x000842E8
+    address: 0x00083310
     type: vec3_t
 -   name: pti.acl_
-    address: 0x00084328
+    address: 0x00083348
     type: vec3_t
 -   name: pto.pos_
-    address: 0x00084348
+    address: 0x00083368
     type: vec3_t
 -   name: pto.vel_
-    address: 0x00084360
+    address: 0x00083380
     type: vec3_t
 -   name: pts.pos_
-    address: 0x00084388
+    address: 0x000833A8
     type: vec3_t
 -   name: pts.vel_
-    address: 0x000843A0
+    address: 0x000833C0
     type: vec3_t
 -   name: pts.acl_
-    address: 0x000843B8
+    address: 0x000833D8
     type: vec3_t
