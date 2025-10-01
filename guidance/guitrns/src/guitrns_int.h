@@ -47,7 +47,7 @@ typedef struct {
 	// double o_d;  // [rad] desired right ascension of ascending node
 	// double w_d;  // [rad] desired argument of perigee
 	// double gmm_d;
-	double e_d_2_m1; // [1] e_d^2 - 1
+	double e2_1; // [1] 1 - e_d^2
 	mat32_t orbitplane2eci; // transformation from orbit plane cartesian coords to ECI coords
 	double f_thrust;
 	double mass_0;

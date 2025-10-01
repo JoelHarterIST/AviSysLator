@@ -262,14 +262,14 @@ void guitrns_update_peg(guitrns_input_t* pgti, guitrns_state_t* pgts) {
 void guitrns_update_peg_init(guitrns_state_t* pgts) {
 	// # set guitrns parameters
 	// data source: https://github.com/istellartech/RocketSim/blob/master/bin/input/example-target_orbit.csv
-	double h_a_d = 230.0e3;  // [m] desired height at apogee
+	double h_a_d = 280.0e3;  // [m] desired height at apogee
 	double h_p_d = 229.999999e3;  // [m] desired height at perigee
 	double i_d = 42.2*DEG_RAD; // [rad] desired inclination
 	double o_d = 56.0*DEG_RAD;  // [rad] desired right ascension of ascending node
 	double w_d = 282.0*DEG_RAD; // [rad] desired argument of perigee
 	gtp.a_d = (h_a_d + h_p_d)/2.0 + A_E;
 	gtp.e_d = (h_a_d + A_E) / gtp.a_d - 1.0;
-	gtp.e_d_2_m1 = gtp.e_d*gtp.e_d - 1.0;
+	gtp.e2_1 = 1.0 - gtp.e_d*gtp.e_d;
 	double ci = cos(i_d);
 	double si = sin(i_d);
 	double co = cos(o_d);
@@ -676,7 +676,7 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 		// 	(sqrt(x2 + y2) -
 		// 		orbitTarget[1] *
 		// 			rpo[0]);  // project from earth's center onto desired orbit
-		_r_p_o_ = scl_v2(gtp.a_d/(x2+y2/gtp.e_d_2_m1)*(sqrt(x2+y2)-gtp.e_d*_r_p_o_.x), _r_p_o_);
+		_r_p_o_ = scl_v2(gtp.a_d/(x2+y2/gtp.e2_1)*(sqrt(x2+y2)-gtp.e_d*_r_p_o_.x), _r_p_o_);
 		// rD = orbitplane2eci * rpo;
 		_r_d_ = mult_m32_v2(gtp.orbitplane2eci, _r_p_o_);
 		// vDmag = sqrt(Earth::mu *
@@ -685,7 +685,7 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 		// Vector2d vDdir(-rpo[1], (rpo[0] + orbitTarget[0] * orbitTarget[1]) *
 		// 							e2_1);  // velocity direction in orbit plane
 		_v_d_o_dir_.x = -_r_p_o_.y;
-		_v_d_o_dir_.y = (_r_p_o_.x + gtp.a_d*gtp.e_d)*gtp.e_d_2_m1;
+		_v_d_o_dir_.y = (_r_p_o_.x + gtp.a_d*gtp.e_d)*gtp.e2_1;
 		// vD = vDmag * orbitplane2eci * vDdir.normalized();
 		_v_d_ = scl_v3(_v_d, mult_m32_v2(gtp.orbitplane2eci, nmlz_v2(_v_d_o_dir_)));
 		// // vmiss =
