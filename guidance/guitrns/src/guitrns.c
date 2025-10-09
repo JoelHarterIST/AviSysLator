@@ -270,6 +270,7 @@ void guitrns_update_peg_init(guitrns_state_t* pgts) {
 	gtp.a_d = (h_a_d + h_p_d)/2.0 + A_E;
 	gtp.e_d = (h_a_d + A_E) / gtp.a_d - 1.0;
 	gtp.e2_1 = 1.0 - gtp.e_d*gtp.e_d;
+	printf("Target Orbit:\n a = %+12.6e m\n e = %+12.6e \n i = %+12.6e deg\n Omega = %+12.6e deg\n omega = %+12.6e deg\n", gtp.a_d, gtp.e_d, i_d/DEG_RAD, o_d/DEG_RAD, w_d/DEG_RAD);
 	double ci = cos(i_d);
 	double si = sin(i_d);
 	double co = cos(o_d);
@@ -760,6 +761,14 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 		if ((gtp.i_corr_min < i_corr) && (_eps_v_d_v >= _v_miss)) {
 			break;
 		}
+
+		
+		// debug print
+			printf("r_p_: x = %+12.6e, y = %+12.6e, z = %+12.6e\n", _r_p_.x, _r_p_.y, _r_p_.z);
+			printf("r_p_o_: x = %+12.6e, y = %+12.6e\n", _r_p_o_.x, _r_p_o_.y);
+			printf("r_d_: x = %+12.6e, y = %+12.6e, z = %+12.6e\n", _r_d_.x, _r_d_.y, _r_d_.z);
+			printf("v_d_: x = %+12.6e, y = %+12.6e, z = %+12.6e\n", _v_d_.x, _v_d_.y, _v_d_.z);
+			printf("v_miss_: x = %+12.6e, y = %+12.6e, z = %+12.6e\n", _v_miss_.x, _v_miss_.y, _v_miss_.z);
 	}
 
 
