@@ -157,7 +157,6 @@ void guitrns_off(guitrns_input_t* pgti, guitrns_state_t* pgts, guitrns_output_t*
 	pgts->mode_peg = 0;
 	pgts->status = 0;
 	pgts->d_v_ = zeros_v3();
-	// pgts->u_y_ = zeros_v3();
 	pgts->t_go = 0.0;
 	pgts->k_time = 0.0;
 	pgts->lmd_ = zeros_v3();
@@ -270,7 +269,6 @@ void guitrns_update_peg_init(guitrns_state_t* pgts) {
 	gtp.a_d = (h_a_d + h_p_d)/2.0 + A_E;
 	gtp.e_d = (h_a_d + A_E) / gtp.a_d - 1.0;
 	gtp.e2_1 = 1.0 - gtp.e_d*gtp.e_d;
-	printf("Target Orbit:\n a = %+12.6e m\n e = %+12.6e \n i = %+12.6e deg\n Omega = %+12.6e deg\n omega = %+12.6e deg\n", gtp.a_d, gtp.e_d, i_d/DEG_RAD, o_d/DEG_RAD, w_d/DEG_RAD);
 	double ci = cos(i_d);
 	double si = sin(i_d);
 	double co = cos(o_d);
@@ -418,15 +416,7 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 	vec2_t _r_p_o_ = zeros_v2();
 	double x2 = 0.0;
 	double y2 = 0.0;
-	// double _u_y_r_p = 0.0;
-	// vec3_t _u_y_r_p_u_y_ = zeros_v3();
-	// vec3_t _r_p_u_y_r_p_u_y_ = zeros_v3();
-	// vec3_t _u_x_ = zeros_v3();
 	vec3_t _r_d_ = zeros_v3();
-	// vec3_t _u_z_ = zeros_v3();
-	// vec3_t _u_x_sin_gmm_d_ = zeros_v3();
-	// vec3_t _u_z_cos_gmm_d_ = zeros_v3();
-	// vec3_t _u_x_sin_gmm_d_u_z_cos_gmm_d_ = zeros_v3();
 	vec3_t _v_d_ = zeros_v3();
 	double _v_d = 0.0;
 	vec2_t _v_d_o_dir_ = zeros_v2();
@@ -437,11 +427,6 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 	vec3_t _v_p_v_ = zeros_v3();
 	double _lmd_v_p_v = 0.0;
 	double _f_v = 0.0;
-	// double _1_u_x_z_square = 0.0;
-	// double _s_eps = 0.0;
-	// vec3_t _u_y_sqrt_1_s_eps_square_ = zeros_v3();
-	// vec3_t _s_eps_u_z_ = zeros_v3();
-	// vec3_t _u_y_ = zeros_v3();
 
 
 	// ## declaration for compute steering command variables
@@ -467,7 +452,6 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 		_v_p_ = scl_v3(1.001, v_); // [m/s] <ref1 p576>
 		_r_p_ = r_; // [m] <ref1 p576>
 		_r_p = norm_v3(_r_p_); // [m] magnitude of R_p_
-		// _u_y_ = nmlz_v3(crs_v3_v3(v_, r_)); // [unitless] unit vector in opposite direction current as angular velocity vector; this should converge to be normal to orbital plane
 		_a_thrust = pgts->a_thrust;
 		_dlt_v_s_ = pgts->dlt_v_thrust_;
 	}
@@ -485,7 +469,6 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 		_v_p_ = pgts->v_p_;
 		_r_d_ = pgts->r_d_;
 		_v_d_ = pgts->v_d_;
-		// _u_y_ = pgts->u_y_;
 		_lmd_ = pgts->lmd_;
 		_lmd_dot_ = pgts->lmd_dot_;
 		_lmd_dot = pgts->lmd_dot;
@@ -643,34 +626,6 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 				_a_3_r_xxx_r_go_ = add_v3_3(_a_3_r_, _t_go_xxx_v_go_, _r_go_);
 				_r_p_ = scl_v3((1.0/_a_4), _a_3_r_xxx_r_go_);
 
-				
-				// debug print
-					// printf("a4: %+12.6e\n", _a_4);_d_v_
-
-					// printf("L = %+12.6e\n", _l);
-					// printf("vex = %+12.6e\n", gtp.v_ex);
-					// printf("as = %+12.6e\n", _a_thrust);
-					// printf("omega = %+12.6e\n", _lmd_dot);
-					// printf("r_d_ = [%+12.6e, %+12.6e, %+12.6e]\n", _r_d_.x, _r_d_.y, _r_d_.z);
-					// printf("r: x = [%+12.6e, %+12.6e, %+12.6e, mag= %+12.6e]\n", r_.x, r_.y, r_.z, _r);
-					// printf("v: x = [%+12.6e, %+12.6e, %+12.6e]\n", v_.x, v_.y, v_.z);
-					// printf("v_d_: x = [%+12.6e, %+12.6e, %+12.6e]\n", _v_d_.x, _v_d_.y, _v_d_.z);
-					// printf("Dv: x = [%+12.6e, %+12.6e, %+12.6e]\n", _d_v_.x, _d_v_.y, _d_v_.z);
-					// printf("r_p_: x = [%+12.6e, %+12.6e, %+12.6e]\n", _r_p_.x, _r_p_.y, _r_p_.z);
-					// printf("vp: x = [%+12.6e, %+12.6e, %+12.6e]\n", _v_p_.x, _v_p_.y, _v_p_.z);
-
-					// printf("theta2: %+12.6e\n", _tht_2);
-					// printf("b2: %+12.6e\n", _b_2);
-					// printf("t2: %+12.6e\n", _t_2);
-					// printf("a2: %+12.6e\n", _a_2);
-					// printf("a4: %+12.6e\n", _a_4);
-					// printf("_a_3_r_xxx_r_go_ = %+12.6e, y = %+12.6e, z = %+12.6e, mag= %+12.6e\n", _a_3_r_xxx_r_go_.x, _a_3_r_xxx_r_go_.y, _a_3_r_xxx_r_go_.z, norm_v3(_a_3_r_xxx_r_go_));
-					// printf("rgo: x = %+12.6e, y = %+12.6e, z = %+12.6e\n", _r_go_.x, _r_go_.y, _r_go_.z);
-					// printf("vgo: x = %+12.6e, y = %+12.6e, z = %+12.6e\n", _v_go_.x, _v_go_.y, _v_go_.z);
-					// printf("tgo: %+12.6e\n", _t_go);
-					// printf("r_p_o_: x = %+12.6e, y = %+12.6e\n", _r_p_o_.x, _r_p_o_.y);
-					// printf("v_miss_: x = %+12.6e, y = %+12.6e, z = %+12.6e\n", _v_miss_.x, _v_miss_.y, _v_miss_.z);
-
 				// ## V_p_ = T_2/T_1*V_+A_1*R_+A_2*R_p_+T_2*V_GO_ [m/s] predicted velocity <ref1 p575 eq62>
 				_t_2_t_1_v_ = scl_v3((_t_2/_t_1), v_);
 				_a_1_r_ = scl_v3(_a_1, r_);
@@ -695,61 +650,18 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 
 		// # corrector
 		
-		// Vector2d rpo =
-		// 	orbitplane2eci.transpose() * rp;  // orbit plane coordinates of rp
-		_r_p_o_ = mult_m23_v3(trns_m32(gtp.orbitplane2eci), _r_p_);
-		// double x2 = rpo[0] * rpo[0], y2 = rpo[1] * rpo[1];
+		_r_p_o_ = mult_m23_v3(trns_m32(gtp.orbitplane2eci), _r_p_);  // orbit plane coordinates of rp
 		x2 = _r_p_o_.x*_r_p_o_.x;
 		y2 = _r_p_o_.y*_r_p_o_.y;
-		// rpo *= orbitTarget[0] / (x2 + y2 / e2_1) *
-		// 	(sqrt(x2 + y2) -
-		// 		orbitTarget[1] *
-		// 			rpo[0]);  // project from earth's center onto desired orbit
-		_r_p_o_ = scl_v2(gtp.a_d/(x2+y2/gtp.e2_1)*(sqrt(x2+y2)-gtp.e_d*_r_p_o_.x), _r_p_o_);
-		// rD = orbitplane2eci * rpo;
+		_r_p_o_ = scl_v2(gtp.a_d/(x2+y2/gtp.e2_1)*(sqrt(x2+y2)-gtp.e_d*_r_p_o_.x), _r_p_o_);  // project from earth's center onto desired orbit
 		_r_d_ = mult_m32_v2(gtp.orbitplane2eci, _r_p_o_);
-		// vDmag = sqrt(Earth::mu *
-		// 			(2 / rD.norm() - 1 / orbitTarget[0]));  // desired speed
-		_v_d = sqrt(MU_E*(2.0/norm_v3(_r_d_) -1.0/gtp.a_d));
-		// Vector2d vDdir(-rpo[1], (rpo[0] + orbitTarget[0] * orbitTarget[1]) *
-		// 							e2_1);  // velocity direction in orbit plane
+		_v_d = sqrt(MU_E*(2.0/norm_v3(_r_d_) -1.0/gtp.a_d));  // desired speed
+
+		// velocity direction in orbit plane
 		_v_d_o_dir_.x = -_r_p_o_.y;
 		_v_d_o_dir_.y = (_r_p_o_.x + gtp.a_d*gtp.e_d)*gtp.e2_1;
-		// vD = vDmag * orbitplane2eci * vDdir.normalized();
+
 		_v_d_ = scl_v3(_v_d, mult_m32_v2(gtp.orbitplane2eci, nmlz_v2(_v_d_o_dir_)));
-		// // vmiss =
-		// // 	vD -
-		// // 	vp;  // [m/s] V_D_ error term <ref1 p576 eq65 (reference contains typo)>
-		// _v_miss_ = sub_v3_v3(_v_d_, _v_p_);
-		// // Dv += vmiss;                         // [m/s] correct D_V_ <ref1 p576 eq65>
-		// _d_v_ = add_v3_v3(_d_v_, _v_miss_);
-		// // Vector3d lambdav = Dv.normalized();  // [unitless] <ref1 p576>
-		// _lmd_v_ = nmlz_v3(_d_v_);
-		// // double Fv = lambdav.dot(vD - v) / Cv.dot(vp - v) -
-		// // 			1;  // [unitless] <ref1 p576 eq66>
-		// _f_v = dot_v3_v3(_lmd_v_, sub_v3_v3(_v_d_, v_)) / dot_v3_v3(_lmd_, sub_v3_v3(_v_p_, v_)) - 1.0;
-		// // if (abs(Fv) < 5e-2) {
-		// // Dv = L * (1 + Fv) * lambdav;  // [m/s] <ref1 p576 eq 65-a>
-		// // }
-
-
-		// // ## U_x_ = uvec(R_p_ - dot(U_y_,R_p_)*U_y_) [unitless] remove U_y_ component from R_p_ and scale to length 1 <ref1 p576 eq63>
-		// _u_y_r_p = dot_v3_v3(_u_y_, _r_p_);
-		// _u_y_r_p_u_y_ = scl_v3(_u_y_r_p, _u_y_);
-		// _r_p_u_y_r_p_u_y_ = sub_v3_v3(_r_p_, _u_y_r_p_u_y_);
-		// _u_x_ = nmlz_v3(_r_p_u_y_r_p_u_y_);
-
-		// // ## R_D_ = R_D*U_x_ [m] <ref1 p576 eq63>
-		// _r_d_ = scl_v3(gtp.r_d, _u_x_);
-
-		// // ## U_z_ = cross(U_x_,U_y_) [unitless] unit vector down range <ref1 p576 eq64>
-		// _u_z_ = crs_v3_v3(_u_x_, _u_y_);
-
-		// // ## V_D_ = V_D*(U_x_*sind(gamma_D) + U_z_*cosd(gamma_D)) [m/s] desired velocity vector <ref1 p576 eq64>
-		// _u_x_sin_gmm_d_ = scl_v3(sin(gtp.gmm_d), _u_x_);
-		// _u_z_cos_gmm_d_ = scl_v3(cos(gtp.gmm_d), _u_z_);
-		// _u_x_sin_gmm_d_u_z_cos_gmm_d_ = add_v3_v3(_u_x_sin_gmm_d_, _u_z_cos_gmm_d_);
-		// _v_d_ = scl_v3(gtp.v_d, _u_x_sin_gmm_d_u_z_cos_gmm_d_);
 
 		// ## V_miss_ = V_D_ - V_p_ [m/s] V_D_ error term <ref1 p576 eq65 (note: reference contains typo)>
 		_v_miss_ = sub_v3_v3(_v_d_, _v_p_);
@@ -772,16 +684,6 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 			_d_v_ = scl_v3((_d_v*(1.0 + _f_v)), _lmd_v_);
 		}
 
-		// // ## S_epsilon = -D*(U_y_(3)+cosd(i_D))*U_z_(3)/(1-U_x_(3)^2) [unitless] <ref1 p577>
-		// _1_u_x_z_square = 1.0 - _u_x_.z*_u_x_.z;
-		// _s_eps = -gtp.d_damp*(_u_y_.z + cos(gtp.i_d))*_u_z_.z/_1_u_x_z_square;
-
-		// // ## U_y_ = U_y_*sqrt(1-S_epsilon^2)+S_epsilon*U_z_ [unitless] <ref1 p577>
-		// _u_y_sqrt_1_s_eps_square_ = scl_v3(sqrt(1.0 - _s_eps*_s_eps), _u_y_);
-		// _s_eps_u_z_ = scl_v3(_s_eps, _u_z_);
-		// _u_y_ = add_v3_v3(_u_y_sqrt_1_s_eps_square_, _s_eps_u_z_);
-
-
 		// # convergence test <ref1 p576>
 		// ## norm(V_miss_) <= epsilon_V*norm(D_V_)
 		_v_miss = norm_v3(_v_miss_);
@@ -789,15 +691,6 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 		if ((gtp.i_corr_min < i_corr) && (_eps_v_d_v >= _v_miss)) {
 			break;
 		}
-
-		
-		// debug print
-
-			printf("r_p_: x = %+12.6e, y = %+12.6e, z = %+12.6e\n", _r_p_.x, _r_p_.y, _r_p_.z);
-			printf("r_p_o_: x = %+12.6e, y = %+12.6e\n", _r_p_o_.x, _r_p_o_.y);
-			printf("r_d_: x = %+12.6e, y = %+12.6e, z = %+12.6e\n", _r_d_.x, _r_d_.y, _r_d_.z);
-			printf("v_d_: x = %+12.6e, y = %+12.6e, z = %+12.6e\n", _v_d_.x, _v_d_.y, _v_d_.z);
-			printf("v_miss_: x = %+12.6e, y = %+12.6e, z = %+12.6e\n", _v_miss_.x, _v_miss_.y, _v_miss_.z);
 	}
 
 
@@ -809,43 +702,14 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 		return GUITRNS_EXIT_FAILURE_PEG_T_GO_MIN;
 	}
 
-
-	// # compute steering command
-	// // ## K = J/L [s] <ref1 p570 eq24>
-	// _k = _j/_l;
-
-	// // ## lambda_ = uvec(V_GO_) [unitless] <ref1 p570 eq25>
-	// _lmd_ = nmlz_v3(_v_go_);
-
-	// // ## S_T = dot(lambda_,R_GO_) [m] <ref1 p570>
-	// _s_t = dot_v3_v3(_lmd_, _r_go_);
-
-	// // ## R_GO_ = R_GO_ + (S_T - dot(lambda_,R_GO_))*lambda_ [m] <ref1 p570 eq26>
-	// _lmd_r_go = dot_v3_v3(_lmd_, _r_go_);
-	// _s_t_lmd_r_go_lmd_ = scl_v3((_s_t - _lmd_r_go), _lmd_);
-	// _r_go_ = add_v3_v3(_r_go_, _s_t_lmd_r_go_lmd_);
-
-	// // ## lambda_dot_ = (R_GO_ - S_T*lambda_)/Q_T; [s^-1] <ref1 p570 eq27>
-	// _s_t_lmd_ = scl_v3(_s_t, _lmd_);
-	// _r_go_s_t_lmd_ = sub_v3_v3(_r_go_, _s_t_lmd_);
-	// _lmd_dot_ = scl_v3((1.0/_q_t), _r_go_s_t_lmd_);
-
-	// // ## lambda_dot = norm(lambda_dot_) [s^-1]  store magnitude of lambda_dot_ vector
-	// _lmd_dot = norm_v3(_lmd_dot_);
-
-	// t_star = stage_time + t_ref + J / L;
+	// ## K = J/L [s] <ref1 p570 eq24>
 	_k = _j/_l;
-	// Cv = vgo.normalized();      // [unitless] <ref1 p570 eq25>
+		// ## lambda_ = uvec(V_GO_) [unitless] <ref1 p570 eq25>
 	_lmd_ = nmlz_v3(_v_go_);
-	// ST = Cv.dot(rgo);           // [m] <ref1 p570>
+	// ## S_T = dot(lambda_,R_GO_) [m] <ref1 p570>
 	_s_t = dot_v3_v3(_lmd_, _r_go_);
-	// Cr = (rgo - ST * Cv) / QT;  // [rad/s] <ref1 p570 eq27>
-	_lmd_dot_ = scl_v3((1.0/_q_t), sub_v3_v3(_r_go_, scl_v3(_s_t, _lmd_)));
-	// omega = Cr.norm();          // [rad/s]  store magnitude of lambda_dot_ vector
-	_lmd_dot = norm_v3(_lmd_dot_);
-	// o1 = Cv.cross(Cr);
-	// stage_time_cutoff_temp = stage_time + tgo;
-
+	_lmd_dot_ = scl_v3((1.0/_q_t), sub_v3_v3(_r_go_, scl_v3(_s_t, _lmd_)));  // [rad/s] <ref1 p570 eq27>
+	_lmd_dot = norm_v3(_lmd_dot_);  // [rad/s]  store magnitude of lambda_dot_ vector
 
 	// # pack state
 	pgts->t_go = _t_go;
@@ -856,7 +720,6 @@ int guitrns_update_peg_core(int32_t init, vec3_t r_, vec3_t v_, guitrns_state_t*
 	pgts->v_p_ = _v_p_;
 	pgts->r_d_ = _r_d_;
 	pgts->v_d_ = _v_d_;
-	// pgts->u_y_  = _u_y_;
 	pgts->lmd_ = _lmd_;
 	pgts->lmd_dot_ = _lmd_dot_;
 	pgts->lmd_dot = _lmd_dot;

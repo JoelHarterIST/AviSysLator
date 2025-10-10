@@ -334,7 +334,7 @@ vec3_t mult_m32_v2(mat32_t m, vec2_t v) {
 // operation for mat33_t and vec3_t
 // ---------------------------------------------------------------------------
 
-/// @brief product mat33 and vec3
+/// @brief product of mat33 and vec3
 /// @param [in] mat33_t m
 /// @param [in] vec3_t v
 /// @return vec3_t m (product) v
@@ -497,11 +497,11 @@ mat33_t inv_m33(mat33_t s) {
 	return _ans;
 }
 
-/// @brief hadamard product of mat33 and mat33
+/// @brief product of mat33 and mat33
 /// @param [in] mat33_t s
 /// @param [in] mat33_t d
-/// @return mat33_t s (hadamard product) d
-mat33_t dot_m33_m33(mat33_t s, mat33_t d) {
+/// @return mat33_t s (product) d
+mat33_t mult_m33_m33(mat33_t s, mat33_t d) {
 	mat33_t _ans;
 
 	_ans.a.x = s.a.x * d.a.x + s.b.x * d.a.y + s.c.x * d.a.z;

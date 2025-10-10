@@ -124,7 +124,7 @@ vec3_t dcm_to_euler321(mat33_t m, vec3_t v);
 mat33_t trns_m33(mat33_t s);
 double det_m33(mat33_t s);
 mat33_t inv_m33(mat33_t s);
-mat33_t dot_m33_m33(mat33_t s, mat33_t d);
+mat33_t mult_m33_m33(mat33_t s, mat33_t d);
 
 
 // ---------------------------------------------------------------------------

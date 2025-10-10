@@ -73,7 +73,6 @@ typedef struct {
 	int32_t mode_peg;
 	int32_t status;
 	vec3_t d_v_;
-	// vec3_t u_y_;
 	double t_go;
 	double k_time;
 	vec3_t lmd_;
