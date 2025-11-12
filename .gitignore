@@ -7,3 +7,6 @@ time_series_log_output.tsv
 time_series_log_output_bkup.tsv
 lib/CMatrixMath/*
 avsl
+*.o
+*.a
+.vscode/*

@@ -18,8 +18,10 @@ INCDIR += -I./userif/src
 INCDIR += -I./guidance/guitrns/src
 INCDIR += -I./plant/ptrns/src
 INCDIR += -I./lib/gncmath/src
+INCDIR += -I./lib/CMatrixMath
 
 LIBDIR = -L./lib/gncmath
+LIBDIR += -L./lib/CMatrixMath
 
 LIBS = -lgncmath
 
@@ -27,6 +29,7 @@ LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 EXTS = ./main/src/main_int.h
 EXTS += ./lib/gncmath/src/gncmath.h
+EXTS += ./lib/CMatrixMath/src/matrices.h
 EXTS += ./guidance/guitrns/src/guitrns_ext.h
 EXTS += ./guidance/guitrns/src/guitrns_int.h
 EXTS += ./plant/ptrns/src/ptrns_ext.h
