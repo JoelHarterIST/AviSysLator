@@ -1,0 +1,3 @@
+[submodule "lib/CMatrixMath"]
+	path = lib/CMatrixMath
+	url = https://github.com/JoelHarterIST/CMatrixMath.git
