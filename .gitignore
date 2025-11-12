@@ -9,3 +9,4 @@ lib/CMatrixMath/*
 avsl
 *.o
 *.a
+.vscode/*
