@@ -2,13 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "matrun",
+            "name": "AVSL_Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/matrixTest",
+            "program": "${workspaceFolder}/avsl",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/bin",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
@@ -19,7 +19,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "matrun_task"
+            "preLaunchTask": "avsl_task"
         }
     ]
 }

@@ -3,7 +3,7 @@
         {
             "label": "avsl_task",
             "type": "shell",
-            "command": "${workspaceFolder}/scripts/run.sh bin",
+            "command": "${workspaceFolder}/scripts/CleanMakeRun.sh",
             "problemMatcher": [],
             "group": "build",
             "presentation": {
