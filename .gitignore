@@ -8,3 +8,4 @@ time_series_log_output_bkup.tsv
 avsl
 *.o
 *.a
+.vscode/*
