@@ -1,0 +1,16 @@
+{
+    "tasks": [
+        {
+            "label": "avsl_task",
+            "type": "shell",
+            "command": "${workspaceFolder}/scripts/run.sh bin",
+            "problemMatcher": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always"
+            }
+            
+        }
+    ],
+    "version": "2.0.0"
+}
