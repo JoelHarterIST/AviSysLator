@@ -6,3 +6,5 @@ symbol_map_bkup.yaml
 time_series_log_output.tsv
 time_series_log_output_bkup.tsv
 avsl
+*.o
+*.a
