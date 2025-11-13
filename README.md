@@ -1,4 +1,4 @@
-# avisyslator_gnc usage
+# AviSysLator
 
 [日本語](README.md) | [English](README.en.md)
 
