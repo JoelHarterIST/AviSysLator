@@ -1,5 +1,7 @@
 # avisyslator_gnc usage
 
+[日本語](README.md) | [English](README.en.md)
+
 ## コンパイル方法
 
 ```shell
