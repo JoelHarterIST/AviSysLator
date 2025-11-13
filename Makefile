@@ -21,9 +21,10 @@ INCDIR += -I./lib/gncmath/src
 INCDIR += -I./lib/CMatrixMath
 
 LIBDIR = -L./lib/gncmath
-LIBDIR += -L./lib/CMatrixMath
+LIBDIR += -L./lib/CMatrixMath/build/release
 
 LIBS = -lgncmath
+LIBS += -lCMatrixMath
 
 LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
